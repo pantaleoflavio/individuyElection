@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <h2 class="card-title">Votazioni</h2>
                     <p class="card-text">Questa sezione permetterà agli utenti di votare per i loro show o incontri preferiti.</p>
-                    <a href="index.php?page=votazioni" class="btn btn-primary">Vai alle Votazioni</a>
+                    <a href="index.php?page=lists" class="btn btn-primary">Vai alle Votazioni</a>
                 </div>
             </div>
         </div>

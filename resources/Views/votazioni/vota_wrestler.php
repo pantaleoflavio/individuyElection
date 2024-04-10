@@ -1,16 +1,18 @@
 <!-- resources/Views/votazioni/vota_wrestler.php -->
 
 <?php
-// Assicurati di sanitizzare e validare questi dati in un'applicazione reale
-$wrestlerName = $_GET['nome'] ?? 'Wrestler Sconosciuto';
+
+$wrestlerId = $_GET['id'] ?? 'Wrestler Sconosciuto';
+$wrestlerDetails = $wrestlerController->getSingleWrestlerPerId($wrestlerId);
+var_dump($wrestlerDetails);
 ?>
 
 <div class="container py-5">
-    <h2 class="text-center mb-4">Vota per: <?= htmlspecialchars($wrestlerName) ?></h2>
+    <h2 class="text-center mb-4">Vota per: <?php echo $wrestlerDetails->name; ?></h2>
     <form action="" method="post">
-        <input type="hidden" name="wrestler_name" value="<?= htmlspecialchars($wrestlerName) ?>">
+
         
-        <p>Valuta il wrestler da 0 a 10 (incrementi di 0.5):</p>
+        <p>Valuta da 0 a 10 (incrementi di 0.5):</p>
         
         <?php for ($i = 0; $i <= 20; $i++): ?>
             <div class="form-check form-check-inline">

@@ -11,9 +11,18 @@ require __DIR__ . '/vendor/autoload.php';
 
 //INIT OF CONTROLLERS
 use App\Controllers\UserController;
-$userController = new UserController();
+use App\Controllers\RankingController;
+use App\Controllers\WrestlerController;
+use App\Controllers\VotingController;
 
+$userController = new UserController();
+$rankingController = new RankingController();
+$wrestlerController = new WrestlerController();
+$votingController = new VotingController();
+
+// Variable for route managing
 $page = $_GET['page'] ?? 'home';
+
 
 // Include l'header
 include_once "includes/header.php";
@@ -28,28 +37,27 @@ switch ($page) {
     case 'home':
         include 'resources/Views/home.php';
         break;
-    case 'votazioni':
-        include 'resources/Views/votazioni/list.php';
+    //CASI DI VOTO
+    case 'lists':
+        include 'resources/Views/votazioni/lists.php';
         break;
-    case 'votazione_dettaglio':
-        // Assicurati di avere un modo per identificare quale votazione dettagliata mostrare
-        $votazione = $_GET['votazione'] ?? null;
-        if ($votazione === 'woty2024') {
-            include 'resources/Views/votazioni/woty2024.php';
-        } else {
-            // Potresti includere qui un file di default o mostrare un errore
-        }
-        break;
+    case 'votazione_dettaglio_wrestler':
+        include 'resources/Views/votazioni/votazione_dettaglio_wrestler.php';  
+    break;
+    case 'lista_candidati':
+        include 'resources/Views/votazioni/lista_candidati.php';  
+    break;
     case 'vota_wrestler':
         include 'resources/Views/votazioni/vota_wrestler.php';
         break;
+    //CASI DI cLASSIFICHE
     case 'indice_classifiche':
         include 'resources/Views/classifiche/indice_classifiche.php';
         break;
     case 'classifica':
-        // Assicurati che il file classifica.php sia incluso correttamente
         include 'resources/Views/classifiche/classifica.php';
         break;
+    //CASI DI USER
     case 'user':
         include 'resources/Views/user/user.php';
         break;
