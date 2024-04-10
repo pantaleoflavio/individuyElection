@@ -9,9 +9,6 @@ session_start();
 
 require __DIR__ . '/vendor/autoload.php';
 
-//INCLUDE DB AND CONTROLLER CLASSES
-include __DIR__ . "/app/Core/DB.php";
-include __DIR__ . "/app/Controllers/UserController.php";
 
 $page = $_GET['page'] ?? 'home';
 
