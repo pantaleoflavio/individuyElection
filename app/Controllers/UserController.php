@@ -12,20 +12,20 @@ class UserController extends DB {
 
     // SIngle User Methods
     public function getSingleUser($id) {
-        $stmt = $this->connect()->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt = $this->connect()->prepare("SELECT * FROM users WHERE id_user = ?");
         if(!$stmt->execute([$id])){
             $user = null;
 
         } else {
             $userDB = $stmt->fetchAll((PDO::FETCH_ASSOC));
-            $user = new User($userDB[0]['id'], $userDB[0]['fullname'], $userDB[0]['email'], $userDB[0]['username'], $userDB[0]['image_path'], $userDB[0]['role']);
+            $user = new User($userDB[0]['id_user'], $userDB[0]['fullname'], $userDB[0]['email'], $userDB[0]['username'], $userDB[0]['image_path'], $userDB[0]['role']);
         }
 
         return $user;
     }
 
     public function updateSingleUser($id, $fullname, $email, $username, $user_image) {
-        $stmt = $this->connect()->prepare("UPDATE users SET fullname=?, email=?, username=?, image_path=? WHERE id=?");
+        $stmt = $this->connect()->prepare("UPDATE users SET fullname=?, email=?, username=?, image_path=? WHERE id_user=?");
     
         try {
             $stmt->bindParam(1, $fullname);

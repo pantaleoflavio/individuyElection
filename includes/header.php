@@ -1,6 +1,9 @@
 
 <?php 
-
+if (isset($_SESSION['userId'])) {
+    $userId = $_SESSION['userId'];
+    $singleUser = $userController->getSingleUser($userId);
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +48,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?= isset($_SESSION['fullname']) ? $_SESSION['fullname'] : 'Utente' ?>
+                        <?= isset($_SESSION['fullname']) ? $singleUser->fullname : 'Utente' ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <?php if(!isset($_SESSION['userId'])) : ?>

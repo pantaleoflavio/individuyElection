@@ -9,6 +9,9 @@ session_start();
 
 require __DIR__ . '/vendor/autoload.php';
 
+//INIT OF CONTROLLERS
+use App\Controllers\UserController;
+$userController = new UserController();
 
 $page = $_GET['page'] ?? 'home';
 
@@ -49,6 +52,9 @@ switch ($page) {
         break;
     case 'user':
         include 'resources/Views/user/user.php';
+        break;
+    case 'user-setting':
+        include 'resources/Views/user/user-setting.php';
         break;
     case 'cronologia_voti':
         include 'resources/Views/user/cronology_votes.php';
