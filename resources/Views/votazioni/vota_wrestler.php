@@ -4,7 +4,7 @@
 
 $wrestlerId = $_GET['id'] ?? 'Wrestler Sconosciuto';
 $wrestlerDetails = $wrestlerController->getSingleWrestlerPerId($wrestlerId);
-var_dump($wrestlerDetails);
+
 ?>
 
 <div class="container py-5">
