@@ -14,11 +14,13 @@ use App\Controllers\UserController;
 use App\Controllers\RankingController;
 use App\Controllers\WrestlerController;
 use App\Controllers\VotingController;
+use App\Controllers\CategoryController;
 
 $userController = new UserController();
 $rankingController = new RankingController();
 $wrestlerController = new WrestlerController();
 $votingController = new VotingController();
+$categoryController = new CategoryController();
 
 // Variable for route managing
 $page = $_GET['page'] ?? 'home';
@@ -41,15 +43,19 @@ switch ($page) {
     case 'lists':
         include 'resources/Views/votazioni/lists.php';
         break;
+    //CASI DI VOTO SINGLE WRESTLER
     case 'votazione_dettaglio_wrestler':
-        include 'resources/Views/votazioni/votazione_dettaglio_wrestler.php';  
+        include 'resources/Views/votazioni/single_wrestler/votazione_dettaglio_wrestler.php';  
     break;
     case 'lista_candidati':
-        include 'resources/Views/votazioni/lista_candidati.php';  
+        include 'resources/Views/votazioni/single_wrestler/lista_candidati.php';  
     break;
     case 'vota_wrestler':
-        include 'resources/Views/votazioni/vota_wrestler.php';
+        include 'resources/Views/votazioni/single_wrestler/vota_wrestler.php';
         break;
+    //CASI DI VOTO TAG TEAM
+    //CASI DI VOTO FEDERATION
+    //CASI DI VOTO SHOW
     //CASI DI cLASSIFICHE
     case 'indice_classifiche':
         include 'resources/Views/classifiche/indice_classifiche.php';

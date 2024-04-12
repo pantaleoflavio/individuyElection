@@ -14,7 +14,7 @@ class WrestlerController extends DB {
             $stmt = $this->connect()->prepare("SELECT * FROM wrestlers WHERE id_wrestler = ?");
             $stmt->execute([$id]);
             $wrestlerDB = $stmt->fetchAll((PDO::FETCH_ASSOC));
-            $wrestler = new wrestler($wrestlerDB[0]['id_wrestler'], $wrestlerDB[0]['name'], $wrestlerDB[0]['height'], $wrestlerDB[0]['weight'], $wrestlerDB[0]['continent'], $wrestlerDB[0]['country']);   
+            $wrestler = new wrestler($wrestlerDB[0]['id_wrestler'], $wrestlerDB[0]['name'], $wrestlerDB[0]['height'], $wrestlerDB[0]['weight'], $wrestlerDB[0]['continent'], $wrestlerDB[0]['country'], $wrestlerDB[0]['category_id']);   
             $stmt = null;
             return $wrestler;
 
