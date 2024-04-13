@@ -3,7 +3,7 @@
 <?php
 
     $listWrestlers;
-    if ($_GET['id_cat'] === '') {
+    if ($_GET['id_cat'] == '') {
         $listWrestlers = $wrestlerController->getAllWrestlers();
     } else {
         $listWrestlers = $wrestlerController->getAllWrestlersPerCategory($_GET['id_cat']);
@@ -18,7 +18,7 @@
     <p>Scegli chi votare</p>
     <div class="list-group">
         <?php foreach($listWrestlers as $candidate): ?>
-            <a href="index.php?page=vota_wrestler&id=<?php echo $candidate->id_wrestler; ?>" class="list-group-item list-group-item-action">
+            <a href="index.php?page=vota_wrestler&id_wrestler=<?php echo $candidate->id_wrestler; ?>&id_ranking=<?php echo $_GET['id_ranking']; ?>" class="list-group-item list-group-item-action">
                 <?php echo htmlspecialchars($candidate->name); ?>
             </a>
         <?php endforeach; ?>

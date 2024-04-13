@@ -2,17 +2,17 @@
 
 <?php
 // Placeholder per la logica del controller
-if (!$_GET['id'] || !$_SESSION['userId']) {
+if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
     echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
 } else {
-    $wrestlerId = $_GET['id'] ?? null;
+
+    $wrestlerId = $_GET['id_wrestler'] ?? null;
+    $rankingId = $_GET['id_ranking'];
     $wrestlerDetails = $wrestlerController->getSingleWrestlerPerId($wrestlerId);
 
     if (!$wrestlerDetails) {
         echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=404'</script>";
-    } else {
-        # code...
-    }
+    } 
 
 }
 
@@ -39,8 +39,11 @@ if (!$_GET['id'] || !$_SESSION['userId']) {
     </div>
 
     <!-- Form di Votazione -->
-    <form action="path/to/submit_vote.php" method="post">
-        <input type="hidden" name="wrestler_id" value="<?= htmlspecialchars($wrestlerId); ?>">
+    <form action="<?php echo ROOT; ?>/resources/Views/votazioni/submit_vote.php" method="post">
+        <input type="hidden" name="wrestler_id" value="<?php echo $wrestlerId; ?>">
+        <input type="hidden" name="id_ranking" value="<?php echo $rankingId; ?>">
+        <input type="hidden" name="id_user" value="<?php echo $_SESSION['userId']; ?>">
+        <input type="hidden" name="year" value="<?= date('Y'); ?>">
 
         <p>Valuta da 0 a 10 (incrementi di 0.5):</p>
         

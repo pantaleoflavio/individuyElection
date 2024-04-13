@@ -13,18 +13,21 @@ require __DIR__ . '/vendor/autoload.php';
 use App\Controllers\UserController;
 use App\Controllers\RankingController;
 use App\Controllers\WrestlerController;
-use App\Controllers\VotingController;
 use App\Controllers\CategoryController;
 
 $userController = new UserController();
 $rankingController = new RankingController();
 $wrestlerController = new WrestlerController();
-$votingController = new VotingController();
 $categoryController = new CategoryController();
 
 // Variable for route managing
 $page = $_GET['page'] ?? 'home';
 
+// MESSAGE AFTER VOTING
+if (isset($_SESSION['flash'])) {
+    echo "<script>alert('" . $_SESSION['flash'] . "')</script>";
+    unset($_SESSION['flash']); // Rimuovi il messaggio dopo la visualizzazione
+}
 
 // Include l'header
 include_once "includes/header.php";
