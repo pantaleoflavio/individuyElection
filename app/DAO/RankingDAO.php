@@ -61,4 +61,22 @@ class RankingDAO extends DB {
         }
     }
 
+    public function getRankingDetailsWithScores($idRanking) {
+        try {
+            $sql = "SELECT w.id_wrestler, w.name, AVG(v.score) as averageScore
+                    FROM votes v
+                    JOIN wrestlers w ON v.id_wrestler = w.id_wrestler
+                    WHERE v.id_ranking = ?
+                    GROUP BY w.id_wrestler, w.name
+                    ORDER BY averageScore DESC";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$idRanking]);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            error_log("PDOException in getRankingDetailsWithScores: " . $e->getMessage());
+            return [];
+        }
+    }
+    
+
 }

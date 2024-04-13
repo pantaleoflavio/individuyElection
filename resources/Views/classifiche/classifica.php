@@ -4,18 +4,19 @@
 if (isset($_GET['id_ranking'])) {
     $idRanking = $_GET['id_ranking'];
     $rankingData = $rankingController->getRankingPerId($idRanking);
+    $rankingScores = $rankingController->getRankingDetails($idRanking);
 }
 ?>
 
 <div class="container py-5">
-    <h1 class="text-center mb-4"><?= $rankingData->rankingName; ?></h1>
-    <p><?= $rankingData->description; ?></p>
+    <h1 class="text-center mb-4"><?= htmlspecialchars($rankingData->rankingName); ?></h1>
+    <p><?= htmlspecialchars($rankingData->description); ?></p>
     <ul class="list-group">
-        <?php //foreach (): ?>
+        <?php foreach ($rankingScores as $entry): ?>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="index.php?page=vota_wrestler"></a>
-                <span class="badge bg-primary rounded-pill"></span>
+                <?= htmlspecialchars($entry->name); ?>
+                <span class="badge bg-primary rounded-pill"><?= number_format($entry->averageScore, 1); ?></span>
             </li>
-        <?php //endforeach; ?>
+        <?php endforeach; ?>
     </ul>
 </div>

@@ -32,4 +32,6 @@ class VoteDAO extends DB {
             return $e->getMessage();  // Restituisci l'errore per feedback ulteriori
         }
     }
+
+
 }

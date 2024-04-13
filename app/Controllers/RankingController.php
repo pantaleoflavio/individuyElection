@@ -22,4 +22,7 @@ class RankingController {
     public function getRankingPerId($id) {
         return $this->rankingDAO->getRankingPerId($id);
     }
+    public function getRankingDetails($idRanking) {
+        return $this->rankingDAO->getRankingDetailsWithScores($idRanking);
+    }
 }
