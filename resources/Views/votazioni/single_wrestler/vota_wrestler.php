@@ -31,7 +31,7 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
         <p><strong>nazione:</strong> <?= htmlspecialchars($wrestlerDetails->country); ?></p>
         <?php if($wrestlerDetails->categoryId != '') : ?>
             <?php 
-                $categoryName = $categoryController->getSingleCategory($wrestlerDetails->categoryId)[0]['name'];
+                $categoryName = $categoryController->getSingleCategory($wrestlerDetails->categoryId)->categoryName;
             ?>
             <p><strong>categoria:</strong> <?= htmlspecialchars($categoryName); ?></p>
         <?php endif; ?>

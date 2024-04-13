@@ -1,6 +1,6 @@
 <?php
 namespace App\Models;
-class Ranking {
+class Category {
 
     public $id;
     public $categoryName;

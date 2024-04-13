@@ -2,25 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Core\DB;
-use PDO;
-use PDOException;
-use App\Models\Category;
+use App\DAO\CategoryDAO;
 
-class CategoryController extends DB {
+class CategoryController {
     
+    private $categoryDAO;
+
+    public function __construct() {
+        $this->categoryDAO = new CategoryDAO(); // Inizializza CategoryDAO
+    }
+
     public function getAllCategories() {
-        $stmt = $this->connect()->prepare("SELECT * FROM categories");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $this->categoryDAO->getAllCategories();
     }
+
     public function getSingleCategory($id) {
-        $stmt = $this->connect()->prepare("SELECT * FROM categories where category_id = ?");
-        $stmt->execute([$id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $this->categoryDAO->getSingleCategory($id);
     }
-
-    
 }
-
-?>

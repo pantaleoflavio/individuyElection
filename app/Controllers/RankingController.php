@@ -2,27 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Core\DB;
-use PDO;
-use PDOException;
-use App\Models\Ranking;
+use App\DAO\RankingDAO;
 
-class RankingController extends DB {
+class RankingController {
     
+    private $rankingDAO;
+
+    public function __construct() {
+        $this->rankingDAO = new RankingDAO(); // Inizializza RankingDAO
+    }
+
     public function getAllRanking() {
-        $stmt = $this->connect()->prepare("SELECT * FROM list_ranking");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $this->rankingDAO->getAllRanking();
     }
 
     public function getRankingPerCategory($category) {
-        $stmt = $this->connect()->prepare("SELECT * FROM list_ranking WHERE ranking = ?");
-        $stmt->execute([$category]);
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $this->rankingDAO->getRankingPerCategory($category);
     }
-
-
-    
 }
-
-?>

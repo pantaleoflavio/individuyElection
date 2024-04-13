@@ -18,8 +18,8 @@
     <p>Scegli chi votare</p>
     <div class="list-group">
         <?php foreach($listWrestlers as $candidate): ?>
-            <a href="index.php?page=vota_wrestler&id_wrestler=<?php echo $candidate->id_wrestler; ?>&id_ranking=<?php echo $_GET['id_ranking']; ?>" class="list-group-item list-group-item-action">
-                <?php echo htmlspecialchars($candidate->name); ?>
+            <a href="index.php?page=vota_wrestler&id_wrestler=<?php echo $candidate['id_wrestler']; ?>&id_ranking=<?php echo $_GET['id_ranking']; ?>" class="list-group-item list-group-item-action">
+                <?php echo htmlspecialchars($candidate['name']); ?>
             </a>
         <?php endforeach; ?>
     </div>
