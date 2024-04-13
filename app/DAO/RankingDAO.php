@@ -38,4 +38,27 @@ class RankingDAO extends DB {
             return [];
         }
     }
+
+    public function getRankingPerId($id) {
+        try {
+            $stmt = $this->connect()->prepare("SELECT * FROM list_ranking WHERE id_ranking = ?");
+            $stmt->execute([$id]);
+            $rankingData = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($rankingData) {
+                $ranking = new Ranking(
+                    $rankingData['id_ranking'],
+                    $rankingData['ranking_name'],
+                    $rankingData['description'],
+                    $rankingData['status'],
+                    $rankingData['category_id']
+                );
+                return $ranking;
+            }
+            return null;
+        } catch (PDOException $e) {
+            error_log("PDOException in getRankingPerId: " . $e->getMessage());
+            return null;
+        }
+    }
+
 }

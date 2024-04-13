@@ -19,4 +19,7 @@ class RankingController {
     public function getRankingPerCategory($category) {
         return $this->rankingDAO->getRankingPerCategory($category);
     }
+    public function getRankingPerId($id) {
+        return $this->rankingDAO->getRankingPerId($id);
+    }
 }
