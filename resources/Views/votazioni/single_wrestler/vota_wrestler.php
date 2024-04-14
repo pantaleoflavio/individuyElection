@@ -10,7 +10,7 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
     $wrestlerId = $_GET['id_wrestler'] ?? null;
     $rankingId = $_GET['id_ranking'];
     $wrestlerDetails = $wrestlerController->getSingleWrestlerPerId($wrestlerId);
-    $alreadyVoted = $voteController->hasUserAlreadyVoted($_SESSION['userId'], $rankingId);
+    $alreadyVoted = $voteController->hasUserAlreadyVoted($_SESSION['userId'], $rankingId, $wrestlerId);
     
     if (!$wrestlerDetails) {
         echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=404'</script>";
@@ -18,7 +18,7 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
 
 
     if ($alreadyVoted) {
-        echo "<script>alert('Hai già votato per questa classifica.')</script>";
+        echo "<script>alert('Hai già dato il tuo voto qua.')</script>";
         echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=lists'</script>";
         exit();
     }

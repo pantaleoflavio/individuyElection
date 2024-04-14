@@ -6,9 +6,9 @@ use App\Controllers\VoteController;
 
 $voteController = new VoteController();
 
-if ($voteController->hasUserAlreadyVoted($idUser, $idRanking)) {
-    $_SESSION['flash'] = "Hai già votato per questa classifica.";
-    echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'; alert('Hai già votato per questa classifica.');</script>";
+if ($voteController->hasUserAlreadyVoted($idUser, $idRanking, $idWrestler)) {
+    $_SESSION['flash'] = "Hai già dato il tuo voto qua";
+    echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=lists'; alert('Hai già dato il tuo voto qua');</script>";
     exit();
 }
 
