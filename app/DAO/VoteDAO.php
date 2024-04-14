@@ -33,5 +33,12 @@ class VoteDAO extends DB {
         }
     }
 
+    public function hasUserAlreadyVoted($userId, $rankingId) {
+        $stmt = $this->connect()->prepare("SELECT COUNT(*) FROM votes WHERE id_user = ? AND id_ranking = ?");
+        $stmt->execute([$userId, $rankingId]);
+        return $stmt->fetchColumn() > 0;
+    }
+    
+
 
 }

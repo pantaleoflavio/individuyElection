@@ -6,6 +6,13 @@ use App\Controllers\VoteController;
 
 $voteController = new VoteController();
 
+if ($voteController->hasUserAlreadyVoted($idUser, $idRanking)) {
+    $_SESSION['flash'] = "Hai già votato per questa classifica.";
+    echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'; alert('Hai già votato per questa classifica.');</script>";
+    exit();
+}
+
+
 // Assumiamo che i dati vengano raccolti correttamente dal form
 $idRanking = $_POST['id_ranking'] ?? null;
 $idWrestler = $_POST['wrestler_id'] ?? null; // Assicurati di gestire i campi che potrebbero non essere presenti

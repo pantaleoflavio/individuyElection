@@ -41,4 +41,11 @@ class VoteController {
 
         return isset($vote->idRanking, $vote->idUser, $vote->score, $vote->year);
     }
+
+    // Controller method for to check if user has already voted
+    public function hasUserAlreadyVoted($userId, $categoryId) {
+        return $this->voteDAO->hasUserAlreadyVoted($userId, $categoryId);
+    }
+
+
 }

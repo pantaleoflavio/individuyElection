@@ -3,16 +3,26 @@
 <?php
 // Placeholder per la logica del controller
 if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
+    echo "<script>alert('Effettua il login prima di votare')</script>";
     echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
 } else {
 
     $wrestlerId = $_GET['id_wrestler'] ?? null;
     $rankingId = $_GET['id_ranking'];
     $wrestlerDetails = $wrestlerController->getSingleWrestlerPerId($wrestlerId);
+    $alreadyVoted = $voteController->hasUserAlreadyVoted($_SESSION['userId'], $rankingId);
 
     if (!$wrestlerDetails) {
         echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=404'</script>";
-    } 
+    }
+
+
+    if ($alreadyVoted) {
+        echo "<script>alert('Hai già votato per questa classifica.')</script>";
+        echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=lists'</script>";
+        exit();
+    }
+
 
 }
 

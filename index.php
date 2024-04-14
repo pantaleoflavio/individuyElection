@@ -14,11 +14,13 @@ use App\Controllers\UserController;
 use App\Controllers\RankingController;
 use App\Controllers\WrestlerController;
 use App\Controllers\CategoryController;
+use App\Controllers\VoteController;
 
 $userController = new UserController();
 $rankingController = new RankingController();
 $wrestlerController = new WrestlerController();
 $categoryController = new CategoryController();
+$voteController = new VoteController();
 
 // Variable for route managing
 $page = $_GET['page'] ?? 'home';
