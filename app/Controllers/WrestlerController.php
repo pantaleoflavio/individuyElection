@@ -16,11 +16,11 @@ class WrestlerController {
         return $this->wrestlerDAO->getSingleWrestlerPerId($id);
     }
 
-    public function getAllWrestlers() {
-        return $this->wrestlerDAO->getAllWrestlers();
+    public function getAllWrestlersPerCategory($categoryId, $order = 'name') {
+        return $this->wrestlerDAO->getAllWrestlersPerCategory($categoryId, $order);
     }
-
-    public function getAllWrestlersPerCategory($categoryId) {
-        return $this->wrestlerDAO->getAllWrestlersPerCategory($categoryId);
+    
+    public function getAllWrestlers($order = 'name') {
+        return $this->wrestlerDAO->getAllWrestlers($order);
     }
 }

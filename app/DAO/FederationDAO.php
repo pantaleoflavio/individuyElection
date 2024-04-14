@@ -16,7 +16,7 @@ class FederationDAO extends DB {
             $federationDB = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($federationDB) {
                 return new Federation(
-                    $federationDB['id_getFederationPerId'], 
+                    $federationDB['id_federation'], 
                     $federationDB['name'], 
                     $federationDB['description']
                 );

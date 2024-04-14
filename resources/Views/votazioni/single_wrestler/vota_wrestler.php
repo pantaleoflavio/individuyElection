@@ -47,7 +47,7 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
                 $federation = $federationController->getFederationPerId($wrestlerDetails->federationId);
                
             ?>
-            <p><strong>stile:</strong> <?= htmlspecialchars($federation->federationName); ?></p>
+            <p><strong>Federazione:</strong> <?= htmlspecialchars($federation->name); ?></p>
         <?php endif; ?>
         <!-- Aggiungi altri dettagli come necessario -->
     </div>

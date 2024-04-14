@@ -1,23 +1,27 @@
 <!-- resources/Views/votazioni/votazione_dettaglio_wrestler.php -->
 
 <?php
-$rankingSIngleWrestler = $rankingController->getRankingPerCategory('wrestler');
-
+$rankingSingleWrestler = $rankingController->getRankingPerCategory('wrestler');
 ?>
 
 <div class="row my-5">
-    <?php foreach($rankingSIngleWrestler as $ranking) : ?>
-        <div class="col-md-6 mb-4">
-            <a href="index.php?page=lista_candidati&id_ranking=<?php echo $ranking->idRanking; ?>&id_cat=<?php echo $ranking->category_id; ?>">
-                <div class="card bg-primary text-white">
-                    <div class="card-body">
-                        <h2> <?php echo $ranking->rankingName; ?></h2>
-                        <p> <?php echo $ranking->description; ?></p>
+    <?php if (!empty($rankingSingleWrestler)): ?>
+        <?php foreach($rankingSingleWrestler as $ranking) : ?>
+            <div class="col-md-6 mb-4">
+                <a href="index.php?page=lista_candidati&id_ranking=<?php echo $ranking->idRanking; ?>&id_cat=<?php echo $ranking->category_id; ?>">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <h2><?= htmlspecialchars($ranking->rankingName); ?></h2>
+                            <p><?= htmlspecialchars($ranking->description); ?></p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <div class="col-12">
+            <p>Nessun ranking trovato per la categoria specificata.</p>
         </div>
-    <?php endforeach; ?>
-    </div>
+    <?php endif; ?>
 </div>
 

@@ -14,7 +14,9 @@ if (isset($_GET['id_ranking'])) {
     <ul class="list-group">
         <?php foreach ($rankingScores as $entry): ?>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <?= htmlspecialchars($entry->name); ?>
+                <a href="index.php?page=vota_wrestler&id_wrestler=<?php echo $entry->id_wrestler; ?>&id_ranking=<?php echo $idRanking; ?>">
+                    <?= htmlspecialchars($entry->name); ?>
+                </a>
                 <span class="badge bg-primary rounded-pill"><?= number_format($entry->averageScore, 1); ?></span>
             </li>
         <?php endforeach; ?>

@@ -8,10 +8,13 @@ use PDO;
 use PDOException;
 
 class WrestlerDAO extends DB {
-    
+
     public function getSingleWrestlerPerId($id) {
         try {
-            $stmt = $this->connect()->prepare("SELECT * FROM wrestlers WHERE id_wrestler = ?");
+            $stmt = $this->connect()->prepare("SELECT w.id_wrestler, w.name, w.country, w.category_id, w.federation_id, f.name AS federation
+                                              FROM wrestlers w
+                                              LEFT JOIN federations f ON w.federation_id = f.id_federation
+                                              WHERE w.id_wrestler = ?");
             $stmt->execute([$id]);
             $wrestlerDB = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($wrestlerDB) {
@@ -30,9 +33,10 @@ class WrestlerDAO extends DB {
         }
     }
 
-    public function getAllWrestlers() {
+    public function getAllWrestlers($order = 'name') {
         try {
-            $stmt = $this->connect()->prepare("SELECT * FROM wrestlers");
+            $sql = "SELECT * FROM wrestlers" . $this->getOrderByClause($order);
+            $stmt = $this->connect()->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -41,14 +45,25 @@ class WrestlerDAO extends DB {
         }
     }
 
-    public function getAllWrestlersPerCategory($categoryId) {
-        try {
-            $stmt = $this->connect()->prepare("SELECT * FROM wrestlers WHERE category_id = ?");
-            $stmt->execute([$categoryId]);
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            error_log("PDOException in getAllWrestlersPerCategory: " . $e->getMessage());
-            return [];
+    public function getAllWrestlersPerCategory($categoryId, $order) {
+        $sql = "SELECT w.id_wrestler, w.name, w.country, w.federation_id, f.name AS federation
+                FROM wrestlers w
+                LEFT JOIN federations f ON w.federation_id = f.id_federation
+                WHERE w.category_id = ?";
+        $sql .= $this->getOrderByClause($order);
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$categoryId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    private function getOrderByClause($order) {
+        switch ($order) {
+            case 'name':
+                return " ORDER BY name";
+            case 'country':
+                return " ORDER BY country";
+            default:
+                return " ORDER BY name";  // Default
         }
     }
 }

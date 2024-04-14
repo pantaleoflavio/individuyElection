@@ -44,7 +44,10 @@ if (isset($_SESSION['userId'])) {
                 <a class="nav-link active" aria-current="page" href="index.php?page=home">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="index.php?page=lists">Votazioni</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?page=indice_classifiche">Classifiche</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
