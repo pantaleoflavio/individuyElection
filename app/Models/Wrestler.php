@@ -4,20 +4,16 @@ class Wrestler {
 
     public $id;
     public $name;
-    public $height;
-    public $weight;
-    public $continent;
     public $country;
     public $categoryId;
+    public $federationId;
 
-    public function __construct($id, $name, $height, $weight, $continent, $country, $categoryId) {
+    public function __construct($id, $name, $country, $categoryId, $federationId) {
         $this->id = $id;
         $this->name = $name;
-        $this->height = $height;
-        $this->weight = $weight;
-        $this->continent = $continent;
         $this->country = $country;
         $this->categoryId = $categoryId;
+        $this->federationId = $federationId;
     }
 
 

@@ -11,7 +11,7 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
     $rankingId = $_GET['id_ranking'];
     $wrestlerDetails = $wrestlerController->getSingleWrestlerPerId($wrestlerId);
     $alreadyVoted = $voteController->hasUserAlreadyVoted($_SESSION['userId'], $rankingId);
-
+    
     if (!$wrestlerDetails) {
         echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=404'</script>";
     }
@@ -35,15 +35,19 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
     <div class="wrestler-details mb-4">
         <!-- Aggiungi qui i dettagli del wrestler -->
         <p><strong>Nome:</strong> <?= htmlspecialchars($wrestlerDetails->name); ?></p>
-        <p><strong>altezza:</strong> <?= htmlspecialchars($wrestlerDetails->height); ?></p>
-        <p><strong>peso:</strong> <?= htmlspecialchars($wrestlerDetails->weight); ?></p>
-        <p><strong>continente:</strong> <?= htmlspecialchars($wrestlerDetails->continent); ?></p>
         <p><strong>nazione:</strong> <?= htmlspecialchars($wrestlerDetails->country); ?></p>
         <?php if($wrestlerDetails->categoryId != '') : ?>
             <?php 
                 $categoryName = $categoryController->getSingleCategory($wrestlerDetails->categoryId)->categoryName;
             ?>
-            <p><strong>categoria:</strong> <?= htmlspecialchars($categoryName); ?></p>
+            <p><strong>stile:</strong> <?= htmlspecialchars($categoryName); ?></p>
+        <?php endif; ?>
+        <?php if($wrestlerDetails->federationId != '') : ?>
+            <?php 
+                $federation = $federationController->getFederationPerId($wrestlerDetails->federationId);
+               
+            ?>
+            <p><strong>stile:</strong> <?= htmlspecialchars($federation->federationName); ?></p>
         <?php endif; ?>
         <!-- Aggiungi altri dettagli come necessario -->
     </div>

@@ -18,11 +18,9 @@ class WrestlerDAO extends DB {
                 return new Wrestler(
                     $wrestlerDB['id_wrestler'], 
                     $wrestlerDB['name'], 
-                    $wrestlerDB['height'], 
-                    $wrestlerDB['weight'], 
-                    $wrestlerDB['continent'], 
                     $wrestlerDB['country'], 
-                    $wrestlerDB['category_id']
+                    $wrestlerDB['category_id'],
+                    $wrestlerDB['federation_id']
                 );
             }
             return null;

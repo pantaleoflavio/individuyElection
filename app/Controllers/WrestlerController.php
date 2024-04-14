@@ -9,7 +9,7 @@ class WrestlerController {
     private $wrestlerDAO;
 
     public function __construct() {
-        $this->wrestlerDAO = new WrestlerDAO(); // Inizializza WrestlerDAO
+        $this->wrestlerDAO = new WrestlerDAO(); // Inizializza DAO
     }
 
     public function getSingleWrestlerPerId($id) {
