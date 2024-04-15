@@ -11,9 +11,7 @@ if (isset($_SESSION['userId'])){
         $input_email = $_POST['signinEmail'];
         $input_password = $_POST['signinPassword'];
 
-        // AUTH INCLUDES
-        include __DIR__ . "/../../../app/Models/Signin.php";
-        include __DIR__ . "/../../../app/Controllers/SigninController.php";
+
 
         $signin = new SigninController($input_email, $input_password);
 
