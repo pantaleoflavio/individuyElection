@@ -35,7 +35,7 @@ class WrestlerDAO extends DB {
 
     public function getAllWrestlers($order = 'name') {
         try {
-            $sql = "SELECT * FROM wrestlers" . $this->getOrderByClause($order);
+            $sql = "SELECT * FROM wrestlers";
             $stmt = $this->connect()->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -45,25 +45,14 @@ class WrestlerDAO extends DB {
         }
     }
 
-    public function getAllWrestlersPerCategory($categoryId, $order) {
+    public function getAllWrestlersPerCategory($categoryId) {
         $sql = "SELECT w.id_wrestler, w.name, w.country, w.federation_id, f.name AS federation
                 FROM wrestlers w
                 LEFT JOIN federations f ON w.federation_id = f.id_federation
                 WHERE w.category_id = ?";
-        $sql .= $this->getOrderByClause($order);
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$categoryId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    private function getOrderByClause($order) {
-        switch ($order) {
-            case 'name':
-                return " ORDER BY name";
-            case 'country':
-                return " ORDER BY country";
-            default:
-                return " ORDER BY name";  // Default
-        }
-    }
 }
