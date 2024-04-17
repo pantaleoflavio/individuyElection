@@ -16,11 +16,23 @@
         <div class="col-md-6 mb-4">
             <div class="card bg-primary">
                 <div class="card-body ">
-                    <a href="index.php?page=votazione_dettaglio_tag" class="list-group-item list-group-item-action d-flex justify-content-center text-white">
+                    <a href="index.php?page=votazione_dettaglio_tag" class="list-group-item list-group-item-action d-flex justify-content-center text-white" deactive>
                         Tag Team
                     </a>
                 </div>
             </div>
         </div>
+
+        <!-- Sezione Federation -->
+        <div class="col-md-6 mb-4">
+            <div class="card bg-primary">
+                <div class="card-body ">
+                    <a href="index.php?page=votazione_dettaglio_federation" class="list-group-item list-group-item-action d-flex justify-content-center text-white">
+                        Federation
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

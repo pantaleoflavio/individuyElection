@@ -16,4 +16,9 @@ class FederationController {
         return $this->wrestlerDAO->getFederationPerId($id);
     }
 
+    public function getAllFederations() {
+        return $this->wrestlerDAO->getAllFederations();
+    }
+    
+
 }

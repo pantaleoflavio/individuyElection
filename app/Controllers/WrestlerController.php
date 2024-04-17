@@ -23,4 +23,9 @@ class WrestlerController {
     public function getAllWrestlers($order = 'name') {
         return $this->wrestlerDAO->getAllWrestlers($order);
     }
+
+    public function getWrestlersByFederation($federationId) {
+        return $this->wrestlerDAO->getWrestlersByFederation($federationId);
+    }
+    
 }

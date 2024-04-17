@@ -1,4 +1,4 @@
-<!-- resources/Views/votazioni/votazione_dettaglio_wrestler.php -->
+<!-- resources/Views/votazioni/single_wrestler/votazione_dettaglio_wrestler.php -->
 
 <?php
 $rankingSingleWrestler = $rankingController->getRankingPerCategory('wrestler');

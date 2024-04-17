@@ -28,5 +28,15 @@ class FederationDAO extends DB {
         }
     }
 
+    public function getAllFederations() {
+        try {
+            $stmt = $this->connect()->prepare("SELECT * FROM federations");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("PDOException in getAllFederations: " . $e->getMessage());
+            return [];
+        }
+    }
 
 }

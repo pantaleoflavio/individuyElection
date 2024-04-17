@@ -1,4 +1,4 @@
-<!-- resources/Views/votazioni/lista_candidati.php -->
+<!-- resources/Views/votazioni/single_wrestler/lista_candidati.php -->
 <?php
     
     $id_cat = isset($_GET['id_cat']) ? $_GET['id_cat'] : null;

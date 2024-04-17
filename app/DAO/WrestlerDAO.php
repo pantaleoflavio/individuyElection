@@ -54,5 +54,23 @@ class WrestlerDAO extends DB {
         $stmt->execute([$categoryId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getWrestlersByFederation($federationId) {
+        try {
+            $stmt = $this->connect()->prepare("SELECT w.id_wrestler, w.name, w.country, f.name AS federation
+                                               FROM wrestlers w
+                                               LEFT JOIN federations f ON w.federation_id = f.id_federation
+                                               WHERE w.federation_id = ?");
+            $stmt->execute([$federationId]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("PDOException in getWrestlersByFederation: " . $e->getMessage());
+            return [];
+        }
+    }
+    
+    
+
+
     
 }

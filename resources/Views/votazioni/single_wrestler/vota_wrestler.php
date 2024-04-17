@@ -1,4 +1,4 @@
-<!-- resources/Views/votazioni/vota_wrestler.php -->
+<!-- resources/Views/votazioni/single_wrestler/vota_wrestler.php -->
 
 <?php
 // Placeholder per la logica del controller

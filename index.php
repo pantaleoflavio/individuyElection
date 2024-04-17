@@ -46,6 +46,12 @@ switch ($page) {
     case 'home':
         include 'resources/Views/home.php';
         break;
+    case 'home':
+        include 'resources/Views/federazioni.php';
+        break;
+    case 'home':
+        include 'resources/Views/stili.php';
+        break;
     //CASI DI VOTO
     case 'lists':
         include 'resources/Views/votazioni/lists.php';
@@ -57,11 +63,17 @@ switch ($page) {
     case 'lista_candidati':
         include 'resources/Views/votazioni/single_wrestler/lista_candidati.php';  
     break;
+    case 'lista_per_federazioni':
+        include 'resources/Views/votazioni/single_wrestler/lista_per_federazioni.php';  
+    break;
     case 'vota_wrestler':
         include 'resources/Views/votazioni/single_wrestler/vota_wrestler.php';
         break;
     //CASI DI VOTO TAG TEAM
     //CASI DI VOTO FEDERATION
+    case 'federation_list':
+        include 'resources/Views/votazioni/federation/federation_list.php';
+        break;
     //CASI DI VOTO SHOW
     //CASI DI cLASSIFICHE
     case 'indice_classifiche':

@@ -49,6 +49,12 @@ if (isset($_SESSION['userId'])) {
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=indice_classifiche">Classifiche</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?page=federation_list">Federazioni</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Stili</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <?= isset($_SESSION['fullname']) ? $singleUser->fullname : 'Utente' ?>
