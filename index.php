@@ -44,60 +44,45 @@ echo '<main class="container">';
 
 switch ($page) {
     case 'home':
-        include 'resources/Views/home.php';
+        include "resources/Views/" . $page . ".php";
         break;
     //CASI DI VOTO
     case 'lists':
-        include 'resources/Views/votazioni/lists.php';
+        include "resources/Views/votazioni/" . $page . ".php";
         break;
     //CASI DI VOTO SINGLE WRESTLER
     case 'votazione_dettaglio_wrestler':
-        include 'resources/Views/votazioni/single_wrestler/votazione_dettaglio_wrestler.php';  
-    break;
     case 'lista_candidati':
-        include 'resources/Views/votazioni/single_wrestler/lista_candidati.php';  
-    break;
     case 'vota_wrestler':
-        include 'resources/Views/votazioni/single_wrestler/vota_wrestler.php';
-        break;
     case 'lista_per_federazioni':
-        include 'resources/Views/votazioni/single_wrestler/lista_per_federazioni.php';
+        include "resources/Views/votazioni/single_wrestler/" . $page . ".php";  
         break;
-        //CASI DI VOTO TAG TEAM
-        //CASI DI VOTO FEDERATION
-        case 'federation_list':
-            include 'resources/Views/votazioni/federation/federation_list.php';
-            break;
+    //CASI DI VOTO TAG TEAM
+    //CASI DI VOTO FEDERATION
+    case 'federation_list':
+        include "resources/Views/votazioni/federation/" . $page . ".php";
+        break;
     //CASI DI VOTO SHOW
     //CASI DI cLASSIFICHE
     case 'indice_classifiche':
-        include 'resources/Views/classifiche/indice_classifiche.php';
-        break;
     case 'classifica':
-        include 'resources/Views/classifiche/classifica.php';
+        include "resources/Views/classifiche/" . $page . ".php";
         break;
     //CASI DI USER
     case 'user':
-        include 'resources/Views/user/user.php';
-        break;
     case 'user-setting':
-        include 'resources/Views/user/user-setting.php';
-        break;
     case 'cronologia_voti':
-        include 'resources/Views/user/cronology_votes.php';
+        include "resources/Views/user/" . $page . ".php";
         break;
+    //CASI DI AUTH
     case 'login':
-        include 'resources/Views/auth/login.php';
-        break;
     case 'signup':
-        include 'resources/Views/auth/signup.php';
-        break;
     case 'logout':
-        include 'resources/Views/auth/logout.php';
+        include "resources/Views/auth/" . $page . ".php";
         break;
     // ...altri casi...
     default:
-        include 'resources/Views/error/404.php';
+        include "resources/Views/error/404.php";
         break;
 }
 
