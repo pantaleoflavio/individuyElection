@@ -78,5 +78,21 @@ class RankingDAO extends DB {
         }
     }
     
+    public function getRankingsWithTotalScores() {
+        try {
+            $sql = "SELECT r.id_ranking, r.ranking_name, COUNT(v.id_votes) AS total_votes
+                    FROM list_ranking r
+                    LEFT JOIN votes v ON r.id_ranking = v.id_ranking
+                    GROUP BY r.id_ranking, r.ranking_name
+                    ORDER BY r.id_ranking";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("PDOException in getRankingsWithTotalScores: " . $e->getMessage());
+            return [];
+        }
+    }
+    
 
 }

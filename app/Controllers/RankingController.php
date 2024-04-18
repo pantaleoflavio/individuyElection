@@ -19,10 +19,16 @@ class RankingController {
     public function getRankingPerCategory($category) {
         return $this->rankingDAO->getRankingPerCategory($category);
     }
+    
     public function getRankingPerId($id) {
         return $this->rankingDAO->getRankingPerId($id);
     }
+
     public function getRankingDetails($idRanking) {
         return $this->rankingDAO->getRankingDetailsWithScores($idRanking);
+    }
+
+    public function getRankingsWithTotalScores() {
+        return $this->rankingDAO->getRankingsWithTotalScores();
     }
 }

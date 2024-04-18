@@ -6,18 +6,22 @@ use App\DAO\FederationDAO;
 
 class FederationController {
     
-    private $wrestlerDAO;
+    private $federationDAO;
 
     public function __construct() {
-        $this->wrestlerDAO = new FederationDAO(); // Inizializza DAO
+        $this->federationDAO = new FederationDAO(); // Inizializza DAO
     }
 
     public function getFederationPerId($id) {
-        return $this->wrestlerDAO->getFederationPerId($id);
+        return $this->federationDAO->getFederationPerId($id);
     }
 
     public function getAllFederations() {
-        return $this->wrestlerDAO->getAllFederations();
+        return $this->federationDAO->getAllFederations();
+    }
+
+    public function getWrestlersCountPerFederation() {
+        return $this->federationDAO->getWrestlersCountPerFederation();
     }
     
 
