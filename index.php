@@ -33,14 +33,16 @@ if (isset($_SESSION['flash'])) {
     unset($_SESSION['flash']); // Rimuovi il messaggio dopo la visualizzazione
 }
 
-// Include l'header
-include_once "includes/header.php";
-
-// Contenuto principale
-echo '<main class="container">';
-
 // TODO valuta altri modi di gestione entry point:
 // include 'resources/Views/' . $page . '.php';
+
+if ($page === 'admin') {
+    include_once "includes/admin_header.php";
+} else {
+    include_once "includes/header.php";
+}
+
+// Contenuto principale
 
 switch ($page) {
     case 'home':
@@ -58,8 +60,12 @@ switch ($page) {
         include "resources/Views/votazioni/single_wrestler/" . $page . ".php";  
         break;
     //CASI DI VOTO TAG TEAM
+    case 'votazione_dettaglio_tag_team':
+        include "resources/Views/votazioni/tag_team/" . $page . ".php";  
+        break;
     //CASI DI VOTO FEDERATION
     case 'federation_list':
+    case 'votazione_dettaglio_federation':
         include "resources/Views/votazioni/federation/" . $page . ".php";
         break;
     //CASI DI VOTO SHOW
@@ -80,14 +86,21 @@ switch ($page) {
     case 'logout':
         include "resources/Views/auth/" . $page . ".php";
         break;
+    //CASI DI Admin
+    case 'admin':
+        include "resources/Views/admin/" . $page . ".php";
+        break;
     // ...altri casi...
     default:
         include "resources/Views/error/404.php";
         break;
 }
 
-echo '</main>';
 
 // Include il footer
-include_once "includes/footer.php";
+if ($page === 'admin') {
+    include_once "includes/admin_footer.php";
+} else {
+    include_once "includes/footer.php";
+}
 ?>

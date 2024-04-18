@@ -32,18 +32,19 @@ if (isset($_SESSION['userId'])){
     }
 }
 ?>
-
-<div class="container py-5">
-    <h2 class="text-center mb-4">Login</h2>
-    <form action="" method="post">
-        <div class="mb-3">
-            <label for="email" class="form-label">Indirizzo Email</label>
-            <input type="email" class="form-control" id="email" name="signinEmail" required>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="signinPassword" required>
-        </div>
-        <button type="submit" name="login" class="btn btn-primary">Accedi</button>
-    </form>
-</div>
+<main class="container">
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Login</h2>
+        <form action="" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Indirizzo Email</label>
+                <input type="email" class="form-control" id="email" name="signinEmail" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="signinPassword" required>
+            </div>
+            <button type="submit" name="login" class="btn btn-primary">Accedi</button>
+        </form>
+    </div>
+</main>

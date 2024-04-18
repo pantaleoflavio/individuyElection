@@ -40,30 +40,31 @@ if (isset($_SESSION['userId'])){
     }
 }
 ?>
-
-<div class="container py-5">
-    <h2 class="text-center mb-4">Registrazione</h2>
-    <form action="" method="post">
-    <div class="form-group">
-                    <label for="signUpName">Your full name</label>
-                    <input type="text" class="form-control" name="signUpName" id="signUpName" required>
-                </div>
-                <div class="form-group">
-                    <label for="signUpEmail">Your email</label>
-                    <input type="email" class="form-control" name="signUpEmail" id="signUpEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="signUpUsername">Your username</label>
-                    <input type="text" class="form-control" name="signUpUsername" id="signUpUsername" required>
-                </div>
-                <div class="form-group">
-                    <label for="signUpPassword">Password</label>
-                    <input type="password" class="form-control" name="signUpPassword" id="signUpPassword" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" required>
-                </div>
-        <button type="submit" name="signup" class="btn btn-primary">Registrati</button>
-    </form>
-</div>
+<main class="container">
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Registrazione</h2>
+        <form action="" method="post">
+        <div class="form-group">
+                        <label for="signUpName">Your full name</label>
+                        <input type="text" class="form-control" name="signUpName" id="signUpName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpEmail">Your email</label>
+                        <input type="email" class="form-control" name="signUpEmail" id="signUpEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpUsername">Your username</label>
+                        <input type="text" class="form-control" name="signUpUsername" id="signUpUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpPassword">Password</label>
+                        <input type="password" class="form-control" name="signUpPassword" id="signUpPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" required>
+                    </div>
+            <button type="submit" name="signup" class="btn btn-primary">Registrati</button>
+        </form>
+    </div>
+</main>

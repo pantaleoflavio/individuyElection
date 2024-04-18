@@ -14,28 +14,30 @@
     }
 ?>
 
-<div class="container py-5">
-    <h2 class="text-center mb-4">Atleti della Federazione <?php echo htmlspecialchars($federationName); ?></h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th><div class="row"><div class="col-md-4">Nome</div></div></th>
-                <th><div class="row"><div class="col-md-4">Paese</div></div></th>
-                <th><div class="row"><div class="col-md-4">Vai alle votazioni</div></div></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($listWrestlers as $wrestler): ?>
+<main class="container">
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Atleti della Federazione <?php echo htmlspecialchars($federationName); ?></h2>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td><div class="row"><div class="col-md-4"><?php echo htmlspecialchars($wrestler['name']); ?></div></div></td>
-                    <td><div class="row"><div class="col-md-4"><?php echo htmlspecialchars($wrestler['country']); ?></div></div></td>
-                    <td>
-                        <div class="row"><div class="col-md-4">
-                            <a href="index.php?page=votazione_dettaglio_wrestler" class="btn btn-primary">Lista Votazioni</a>
-                        </div></div>
-                    </td>
+                    <th><div class="row"><div class="col-md-4">Nome</div></div></th>
+                    <th><div class="row"><div class="col-md-4">Paese</div></div></th>
+                    <th><div class="row"><div class="col-md-4">Vai alle votazioni</div></div></th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <?php foreach($listWrestlers as $wrestler): ?>
+                    <tr>
+                        <td><div class="row"><div class="col-md-4"><?php echo htmlspecialchars($wrestler['name']); ?></div></div></td>
+                        <td><div class="row"><div class="col-md-4"><?php echo htmlspecialchars($wrestler['country']); ?></div></div></td>
+                        <td>
+                            <div class="row"><div class="col-md-4">
+                                <a href="index.php?page=votazione_dettaglio_wrestler" class="btn btn-primary">Lista Votazioni</a>
+                            </div></div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</main>

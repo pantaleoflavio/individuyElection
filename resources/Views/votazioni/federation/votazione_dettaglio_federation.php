@@ -1,12 +1,13 @@
-<!-- resources/Views/votazioni/single_wrestler/votazione_dettaglio_wrestler.php -->
+<!-- resources/Views/votazioni/single_wrestler/votazione_dettaglio_federation.php -->
 
 <?php
-$rankingSingleWrestler = $rankingController->getRankingPerCategory('wrestler');
+$rankingFederation = $rankingController->getRankingPerCategory('federation');
 ?>
+
 <main class="container">
     <div class="row my-5">
-        <?php if (!empty($rankingSingleWrestler)): ?>
-            <?php foreach($rankingSingleWrestler as $ranking) : ?>
+        <?php if (!empty($rankingFederation)): ?>
+            <?php foreach($rankingFederation as $ranking) : ?>
                 <div class="col-md-6 mb-4">
                     <a href="index.php?page=lista_candidati&id_ranking=<?php echo $ranking->idRanking; ?>&id_cat=<?php echo $ranking->category_id; ?>">
                         <div class="card bg-primary text-white">

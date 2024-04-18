@@ -55,6 +55,11 @@ if (isset($_SESSION['userId'])) {
                 <li class="nav-item">
                     <a class="nav-link" href="">Stili</a>
                 </li>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?page=admin">Admin Dashboard</a>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <?= isset($_SESSION['fullname']) ? $singleUser->fullname : 'Utente' ?>
