@@ -28,7 +28,7 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
 
 ?>
 
-<main class="container">
+<div class="container">
     <div class="container py-5">
         <h2 class="text-center mb-4">Vota per: <?= htmlspecialchars($wrestlerDetails->name); ?></h2>
     
@@ -75,4 +75,4 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
             </div>
         </form>
     </div>
-</main>
+</div>

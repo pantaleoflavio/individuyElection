@@ -4,7 +4,7 @@
 $rankingAvailable = $rankingController->getAllRanking();
 
 ?>
-<main class="container">
+<div class="container">
     <div class="container py-5">
         <h1 class="text-center mb-4">Classifiche Disponibili</h1>
         <?php foreach($rankingAvailable as $ranking) : ?>
@@ -19,4 +19,4 @@ $rankingAvailable = $rankingController->getAllRanking();
             </div>
         <?php endforeach; ?>
     </div>
-</main>
+</div>

@@ -32,7 +32,7 @@ if (isset($_SESSION['userId'])){
     }
 }
 ?>
-<main class="container">
+<div class="container">
     <div class="container py-5">
         <h2 class="text-center mb-4">Login</h2>
         <form action="" method="post">
@@ -47,4 +47,4 @@ if (isset($_SESSION['userId'])){
             <button type="submit" name="login" class="btn btn-primary">Accedi</button>
         </form>
     </div>
-</main>
+</div>

@@ -34,7 +34,7 @@ if (!isset($_SESSION['userId'])) {
 
 ?>
 
-<main class="container my-4">
+<div class="container my-4">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xs-12 col-sm-6">
@@ -69,4 +69,4 @@ if (!isset($_SESSION['userId'])) {
             </div>
         </div>
     </div>
-</main>
+</div>

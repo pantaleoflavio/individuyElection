@@ -7,7 +7,7 @@ if (isset($_SESSION['userId'])) {
     echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
 }
 ?>
-<main class="container">
+<div class="container">
     <div class="row py-5 align-items-start"> 
         <div class="col-12 col-md-6 mb-4">
             <h1 class="text-center mb-4">Profilo Utente</h1>
@@ -52,4 +52,4 @@ if (isset($_SESSION['userId'])) {
             </div>
         </div>
     </div>
-</main>
+</div>

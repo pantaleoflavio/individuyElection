@@ -3,7 +3,7 @@
 <?php
 $rankingSingleWrestler = $rankingController->getRankingPerCategory('wrestler');
 ?>
-<main class="container">
+<div class="container">
     <div class="row my-5">
         <?php if (!empty($rankingSingleWrestler)): ?>
             <?php foreach($rankingSingleWrestler as $ranking) : ?>
@@ -24,5 +24,5 @@ $rankingSingleWrestler = $rankingController->getRankingPerCategory('wrestler');
             </div>
         <?php endif; ?>
     </div>
-</main>
+</div>
 

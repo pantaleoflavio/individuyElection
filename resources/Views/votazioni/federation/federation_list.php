@@ -1,5 +1,5 @@
 <!-- resources/Views/votazioni/federation/federation_list.php -->
-<main class="container">
+<div class="container">
     <div class="container py-5">
         <h2 class="text-center mb-4">Lista delle Federazioni</h2>
         <ul class="list-group">
@@ -14,4 +14,4 @@
             <?php endforeach; ?>
         </ul>
     </div>
-</main>
+</div>

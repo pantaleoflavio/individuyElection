@@ -4,7 +4,7 @@
 $categories = $categoryController->getAllCategories();
 
 ?>
-<main class="container">
+<div class="container">
 
     <h1>Stili di Wrestling</h1>
     <ul>
@@ -13,4 +13,4 @@ $categories = $categoryController->getAllCategories();
         <?php endforeach; ?>
         <li><a href="index.php?page=lista_candidati&id_cat=">Pesi Massimi</a></li>
     </ul>
-</main>
+</div>
