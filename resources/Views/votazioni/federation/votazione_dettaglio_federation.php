@@ -4,7 +4,7 @@
 $rankingFederation = $rankingController->getRankingPerCategory('federation');
 ?>
 
-<div class="container">
+<main class="container">
     <div class="row my-5">
         <?php if (!empty($rankingFederation)): ?>
             <?php foreach($rankingFederation as $ranking) : ?>
@@ -25,5 +25,5 @@ $rankingFederation = $rankingController->getRankingPerCategory('federation');
             </div>
         <?php endif; ?>
     </div>
-</div>
+</main>
 

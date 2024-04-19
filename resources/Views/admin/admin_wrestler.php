@@ -6,7 +6,7 @@ $categories = $categoryController->getAllCategories();
 $federations = $federationController->getAllFederations();
 
 // Gestione del POST per aggiungere o modificare un wrestler
-if (isset($_GET['add_wrestler'])) {
+if (isset($_POST['add_wrestler'])) {
     $name = $_POST['name'];
     $country = $_POST['country'];
     $categoryId = !empty($_POST['category_id']) ? $_POST['category_id'] : NULL;
@@ -15,6 +15,7 @@ if (isset($_GET['add_wrestler'])) {
     $result = $wrestlerController->addWrestler($name, $country, $categoryId, $federationId);
     if ($result) {
         echo "<script>alert('Wrestler aggiunto con successo!')</script>";
+        echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=admin_wrestler'</script>";
     } else {
         echo "<script>alert('Errore nell'aggiunta del wrestler.')</script>";
     }
@@ -56,6 +57,7 @@ if (isset($_GET['add_wrestler'])) {
                             <label for="category">Categoria:</label>
                             <select name="category_id" id="category">
                                 <option value="">Seleziona Categoria</option>
+                                <option value="">Pesi Massimi</option>
                                 <?php foreach ($categories as $category): ?>
                                     <option value="<?php echo $category['category_id']; ?>"><?php echo htmlspecialchars($category['name']); ?></option>
                                 <?php endforeach; ?>

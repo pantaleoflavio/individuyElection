@@ -7,7 +7,7 @@ if (isset($_GET['id_ranking'])) {
     $rankingScores = $rankingController->getRankingDetails($idRanking);
 }
 ?>
-<div class="container">
+<main class="container">
     <div class="container py-5">
         <h1 class="text-center mb-4"><?= htmlspecialchars($rankingData->rankingName); ?></h1>
         <p><?= htmlspecialchars($rankingData->description); ?></p>
@@ -22,4 +22,4 @@ if (isset($_GET['id_ranking'])) {
             <?php endforeach; ?>
         </ul>
     </div>
-</div>
+</main>

@@ -3,7 +3,7 @@
 <?php
 $rankingTagTeam = $rankingController->getRankingPerCategory('tag team');
 ?>
-<div class="container">
+<main class="container">
     <div class="row my-5">
     <?php if (!empty($rankingTagTeam)): ?>
         <?php foreach($rankingTagTeam as $ranking) : ?>
@@ -24,4 +24,4 @@ $rankingTagTeam = $rankingController->getRankingPerCategory('tag team');
         </div>
     <?php endif; ?>
     </div>
-</div>
+</main>

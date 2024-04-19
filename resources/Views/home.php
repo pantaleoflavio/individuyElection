@@ -1,5 +1,5 @@
 <!-- resources/Views/home.php -->
-<div class="container">
+<main class="container">
     <div class="container py-5">
         <h1 class="text-center mb-5">Bentornato nella Piattaforma di Votazione di individuy Italiani!</h1>
     
@@ -27,4 +27,4 @@
             </div>
         </div>
     </div>
-</div>
+</main>

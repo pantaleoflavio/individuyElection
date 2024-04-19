@@ -55,11 +55,6 @@ if (isset($_SESSION['userId'])) {
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=category_list">Stili</a>
                 </li>
-                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=admin">Admin Dashboard</a>
-                    </li>
-                <?php endif; ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <?= isset($_SESSION['fullname']) ? $singleUser->fullname : 'Utente' ?>
@@ -71,7 +66,7 @@ if (isset($_SESSION['userId'])) {
                         <?php else : ?>
                             <li><a class="dropdown-item" href="index.php?page=user">Profilo</a></li>
                             <?php if($_SESSION['role'] === 'admin') : ?>
-                                <li><a class="dropdown-item" href="">Admin Dashboard</a></li>
+                                <li><a class="dropdown-item" href="index.php?page=admin">Admin Dashboard</a></li>
                             <?php endif; ?>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="index.php?page=logout">Log out</a></li>

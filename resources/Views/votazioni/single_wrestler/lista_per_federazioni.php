@@ -14,7 +14,7 @@
     }
 ?>
 
-<div class="container">
+<main class="container">
     <div class="container py-5">
         <h2 class="text-center mb-4">Atleti della Federazione <?php echo htmlspecialchars($federationName); ?></h2>
         <table class="table">
@@ -40,4 +40,4 @@
             </tbody>
         </table>
     </div>
-</div>
+</main>
