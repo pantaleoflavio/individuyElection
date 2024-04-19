@@ -15,7 +15,8 @@ if (isset($_POST['add_wrestler'])) {
     $result = $wrestlerController->addWrestler($name, $country, $categoryId, $federationId);
     if ($result) {
         echo "<script>alert('Wrestler aggiunto con successo!')</script>";
-        echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=admin_wrestler'</script>";
+        // Ricarica dopo l'inserimento
+        $wrestlers = $wrestlerController->getAllWrestlers();
     } else {
         echo "<script>alert('Errore nell'aggiunta del wrestler.')</script>";
     }

@@ -23,6 +23,14 @@ class FederationController {
     public function getWrestlersCountPerFederation() {
         return $this->federationDAO->getWrestlersCountPerFederation();
     }
+
+    public function addFederation($name, $description) {
+        return $this->federationDAO->addFederation($name, $description);
+    }
+
+    public function updateFederation($id, $name, $description) {
+        return $this->federationDAO->updateFederation($id, $name, $description);
+    }
     
 
 }

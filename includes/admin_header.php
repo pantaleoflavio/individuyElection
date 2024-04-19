@@ -59,12 +59,12 @@ if (!isset($_SESSION['userId']) && $_SESSION['role'] !== 'admin') {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="index.php?page=admin_category">
                                 <i class="fa-solid fa-tv"></i> Lista Stili
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="index.php?page=admin_federation">
                                 <i class="fa-solid fa-ticket"></i> Lista Federation
                             </a>
                         </li>

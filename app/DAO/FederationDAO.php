@@ -54,4 +54,29 @@ class FederationDAO extends DB {
         }
     }
 
+    public function addFederation($name, $description) {
+        try {
+            $sql = "INSERT INTO federations (name, description) VALUES (?, ?)";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$name, $description]);
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            error_log("PDOException in addFederation: " . $e->getMessage());
+            return false;
+        }
+    }
+    
+    public function updateFederation($id, $name, $description) {
+        try {
+            $sql = "UPDATE federations SET name = ?, description = ? WHERE id_federation = ?";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$name, $description, $id]);
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            error_log("PDOException in updateFederation: " . $e->getMessage());
+            return false;
+        }
+    }
+    
+
 }

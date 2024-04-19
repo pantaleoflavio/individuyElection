@@ -19,4 +19,13 @@ class CategoryController {
     public function getSingleCategory($id) {
         return $this->categoryDAO->getSingleCategory($id);
     }
+
+    public function addCategory($name) {
+        return $this->categoryDAO->addCategory($name);
+    }
+
+    public function updateCategory($id, $name) {
+        return $this->categoryDAO->updateCategory($id, $name);
+    }
+    
 }
