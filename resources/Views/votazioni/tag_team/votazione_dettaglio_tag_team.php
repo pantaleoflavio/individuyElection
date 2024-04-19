@@ -3,8 +3,8 @@
 <?php
 $rankingTagTeam = $rankingController->getRankingPerCategory('tag team');
 ?>
-
-<div class="row my-5">
+<main class="container">
+    <div class="row my-5">
     <?php if (!empty($rankingTagTeam)): ?>
         <?php foreach($rankingTagTeam as $ranking) : ?>
             <div class="col-md-6 mb-4">
@@ -23,5 +23,5 @@ $rankingTagTeam = $rankingController->getRankingPerCategory('tag team');
             <p>Nessun ranking trovato per la categoria specificata.</p>
         </div>
     <?php endif; ?>
-</div>
-
+    </div>
+</main>

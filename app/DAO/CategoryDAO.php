@@ -14,12 +14,7 @@ class CategoryDAO extends DB {
         try {
             $stmt = $this->connect()->prepare("SELECT * FROM categories");
             $stmt->execute();
-            // Restituisce un array di oggetti Category
-            $categories = [];
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $categories[] = new Category($row['category_id'], $row['name']);
-            }
-            return $categories;
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("PDOException in getAllCategories: " . $e->getMessage());
             return [];

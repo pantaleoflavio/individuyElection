@@ -35,9 +35,15 @@
                                 echo ($federation ? $federation->name : 'Federazione non disponibile');
                             ?>
                         </td>
-                        <td>
-                            <a href="index.php?page=vota_wrestler&id_wrestler=<?php echo $candidate['id_wrestler']; ?>&id_ranking=<?php echo $_GET['id_ranking']; ?>" class="btn btn-primary">Vota</a>
-                        </td>
+                        <?php if(isset($_GET['id_ranking'])): ?>
+                            <td>
+                                <a href="index.php?page=vota_wrestler&id_wrestler=<?php echo $candidate['id_wrestler']; ?>&id_ranking=<?php echo $_GET['id_ranking']; ?>" class="btn btn-primary">Vota</a>
+                            </td>
+                        <?php else : ?>
+                            <td>
+                                <a href="index.php?page=votazione_dettaglio_wrestler" class="btn btn-primary">Vai alle votazioni</a>
+                            </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

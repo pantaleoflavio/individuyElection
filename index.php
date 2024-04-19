@@ -70,6 +70,7 @@ switch ($page) {
         break;
     //CASI DI VOTO SHOW
     //CASI DI cLASSIFICHE
+    case 'category_list':
     case 'indice_classifiche':
     case 'classifica':
         include "resources/Views/classifiche/" . $page . ".php";
@@ -77,7 +78,6 @@ switch ($page) {
     //CASI DI USER
     case 'user':
     case 'user-setting':
-    case 'cronologia_voti':
         include "resources/Views/user/" . $page . ".php";
         break;
     //CASI DI AUTH

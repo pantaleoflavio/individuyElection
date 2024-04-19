@@ -47,5 +47,8 @@ class VoteController {
         return $this->voteDAO->hasUserAlreadyVoted($userId, $rankingId, $wrestlerId);
     }
 
+    public function getVoteHistoryByUserId($userId) {
+        return $this->voteDAO->getVoteHistoryByUserId($userId);
+    }
 
 }

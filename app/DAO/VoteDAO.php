@@ -39,6 +39,29 @@ class VoteDAO extends DB {
         return $stmt->fetchColumn() > 0;
     }
     
+    public function getVoteHistoryByUserId($userId) {
+        try {
+            $sql = "SELECT v.score, v.year,
+                            w.name AS wrestler_name,
+                            f.name AS federation_name,
+                            t.name AS tag_team_name,
+                            r.ranking_name,
+                            v.created_at
+                    FROM votes v
+                    LEFT JOIN wrestlers w ON v.id_wrestler = w.id_wrestler
+                    LEFT JOIN federations f ON v.id_federation = f.id_federation
+                    LEFT JOIN tag_teams t ON v.id_tag_team = t.id_tag_team
+                    LEFT JOIN list_ranking r ON v.id_ranking = r.id_ranking
+                    WHERE v.id_user = ?
+                    ORDER BY v.created_at DESC";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$userId]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("PDOException in getVoteHistoryByUserId: " . $e->getMessage());
+            return [];
+        }
+    }
     
 
 

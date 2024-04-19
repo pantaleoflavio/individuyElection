@@ -53,7 +53,7 @@ if (isset($_SESSION['userId'])) {
                     <a class="nav-link" href="index.php?page=federation_list">Federazioni</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Stili</a>
+                    <a class="nav-link" href="index.php?page=category_list">Stili</a>
                 </li>
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
                     <li class="nav-item">
