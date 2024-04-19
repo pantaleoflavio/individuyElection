@@ -70,7 +70,7 @@ if (!isset($_SESSION['userId']) && $_SESSION['role'] !== 'admin') {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <i class="fa-solid fa-ticket"></i> Lista votazioni
+                                <i class="fa-solid fa-ticket"></i> Lista votazioni disponibili
                             </a>
                         </li>
                     </ul>

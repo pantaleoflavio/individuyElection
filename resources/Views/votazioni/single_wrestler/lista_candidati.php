@@ -9,7 +9,7 @@
         $listWrestlers = $wrestlerController->getAllWrestlersPerCategory($id_cat);
     }
 ?>
-<div class="container">
+<main class="container">
     <div class="container py-5">
         <h2 class="text-center mb-4">Lista dei Candidati</h2>
         <p>Scegli chi votare</p>
@@ -49,7 +49,7 @@
             </tbody>
         </table>
     </div>
-</div>
+</main>
 
 <script>
     function sortTable(column, thElement) {

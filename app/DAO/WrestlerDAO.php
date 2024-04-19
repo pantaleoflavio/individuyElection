@@ -37,7 +37,7 @@ class WrestlerDAO extends DB {
         try {
             $sql = "SELECT w.id_wrestler, w.name, w.country, 
                         IFNULL(c.name, 'Pesi Massimi') AS category_name, 
-                        f.name AS federation_name
+                        f.name AS federation_name, w.federation_id 
                     FROM wrestlers w
                     LEFT JOIN categories c ON w.category_id = c.category_id
                     LEFT JOIN federations f ON w.federation_id = f.id_federation";
@@ -49,6 +49,7 @@ class WrestlerDAO extends DB {
             return [];
         }
     }
+    
 
     public function getAllWrestlersPerCategory($categoryId) {
         $sql = "SELECT w.id_wrestler, w.name, w.country, w.federation_id, f.name AS federation

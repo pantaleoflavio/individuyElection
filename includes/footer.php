@@ -17,8 +17,8 @@
 
     <!-- Copyright -->
     <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2020 Copyright:
-      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      © 2024 Copyright:
+      <a class="text-white" href="https://www.linkedin.com/in/flavio-pantaleo-517935279/" target="_blank">Flavio Pantaleo</a>
     </div>
     <!-- Copyright -->
 </footer>
