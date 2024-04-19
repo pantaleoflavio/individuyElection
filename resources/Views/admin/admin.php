@@ -4,7 +4,7 @@
     $federationsWrestlersCount = $federationController->getWrestlersCountPerFederation();
 ?>
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="row">
                 <h1 class="d-flex justify-content-center text-uppercase mt-2">Admin Dashboard</h1>
             </div>
@@ -36,7 +36,6 @@
                     Total number of users signed: <strong><?php echo $totalUsers; ?></strong>
                 </div>
             </div>
-        </main>
-    </div>
-</div>
+        </div>
+
 

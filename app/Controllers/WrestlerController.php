@@ -27,5 +27,12 @@ class WrestlerController {
     public function getWrestlersByFederation($federationId) {
         return $this->wrestlerDAO->getWrestlersByFederation($federationId);
     }
+
+    public function updateWrestler($id, $name, $country, $categoryId, $federationId) {
+        return $this->wrestlerDAO->updateWrestler($id, $name, $country, $categoryId, $federationId);
+    }
+    public function addWrestler($name, $country, $categoryId, $federationId) {
+        return $this->wrestlerDAO->addWrestler($name, $country, $categoryId, $federationId);
+    }
     
 }

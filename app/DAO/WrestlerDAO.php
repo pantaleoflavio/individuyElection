@@ -33,9 +33,14 @@ class WrestlerDAO extends DB {
         }
     }
 
-    public function getAllWrestlers($order = 'name') {
+    public function getAllWrestlers() {
         try {
-            $sql = "SELECT * FROM wrestlers";
+            $sql = "SELECT w.id_wrestler, w.name, w.country, 
+                        IFNULL(c.name, 'Pesi Massimi') AS category_name, 
+                        f.name AS federation_name
+                    FROM wrestlers w
+                    LEFT JOIN categories c ON w.category_id = c.category_id
+                    LEFT JOIN federations f ON w.federation_id = f.id_federation";
             $stmt = $this->connect()->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -70,7 +75,30 @@ class WrestlerDAO extends DB {
     }
     
     
+    public function updateWrestler($id, $name, $country, $categoryId, $federationId) {
+        try {
+            $sql = "UPDATE wrestlers SET name = ?, country = ?, category_id = ?, federation_id = ? WHERE id_wrestler = ?";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$name, $country, $categoryId, $federationId, $id]);
+            return $stmt->rowCount();  // Restituisce il numero di righe modificate
+        } catch (PDOException $e) {
+            error_log("PDOException in updateWrestler: " . $e->getMessage());
+            return false;  // Restituisce false in caso di errore
+        }
+    }
 
+    public function addWrestler($name, $country, $categoryId, $federationId) {
+        try {
+            $sql = "INSERT INTO wrestlers (name, country, category_id, federation_id) VALUES (?, ?, ?, ?)";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$name, $country, $categoryId, $federationId]);
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            error_log("PDOException in addWrestler: " . $e->getMessage());
+            return false;
+        }
+    }
+    
 
     
 }

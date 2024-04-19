@@ -25,7 +25,7 @@ $voteController = new VoteController();
 $federationController = new FederationController();
 
 // Variable for route managing
-$page = $_GET['page'] ?? 'home';
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
 // MESSAGE AFTER VOTING
 if (isset($_SESSION['flash'])) {
@@ -36,11 +36,14 @@ if (isset($_SESSION['flash'])) {
 // TODO valuta altri modi di gestione entry point:
 // include 'resources/Views/' . $page . '.php';
 
-if ($page === 'admin') {
+if (strpos($page, 'admin') === 0) {
+    // Include l'header dell'amministratore se il valore di 'page' inizia con 'admin_'
     include_once "includes/admin_header.php";
 } else {
+    // Include l'header standard altrimenti
     include_once "includes/header.php";
 }
+
 
 // Contenuto principale
 
@@ -88,6 +91,8 @@ switch ($page) {
         break;
     //CASI DI Admin
     case 'admin':
+    case 'admin_wrestler':
+    case 'admin_edit_wrestler':
         include "resources/Views/admin/" . $page . ".php";
         break;
     // ...altri casi...
@@ -98,7 +103,7 @@ switch ($page) {
 
 
 // Include il footer
-if ($page === 'admin') {
+if (strpos($page, 'admin') === 0) {
     include_once "includes/admin_footer.php";
 } else {
     include_once "includes/footer.php";
