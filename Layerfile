@@ -1,0 +1,25 @@
+# Use an Ubuntu 18.04 base for our staging server
+FROM ubuntu:18.04
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    npm \
+    nodejs \
+    php8.1 \
+    mariadb-server \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install specific version of Node.js
+RUN npm install -g n
+RUN n 20.10.00
+
+# Install Composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN php -r "unlink('composer-setup.php');"
+
+# Expose the webserver in the staging server as a secure link.
+# Whenever someone clicks the link, we'll load this staging server and forward
+# their requests to it.
+EXPOSE WEBSITE http://localhost:80
