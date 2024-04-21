@@ -10,8 +10,11 @@
       <a title="gruppo whatsapp" target="_blank" href="https://chat.whatsapp.com/IthimX4dVEvBhE5iA1wqbt" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
           <i class="fab fa-whatsapp"></i>
       </a>
-      <a target="_blank" href="https://www.twitter.com/yourProfile" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
-          <i class="fab fa-twitter"></i>
+      <a title="il canale spotify" target="_blank" href="https://open.spotify.com/show/1axEIE0N4t7h1Jmk81dqIp?si=INAD9lIySNareLLokbBbTQ&utm_source=copy-link" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+          <i class="fab fa-spotify"></i>
+      </a>
+      <a title="La pagina instagram" target="_blank" href="https://www.instagram.com/indyviduipodcast?igsh=dzBkM2Y0ZWVxcjk0" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: #54456b;">
+          <i class="fab fa-instagram"></i>
       </a>
   </div>
 
