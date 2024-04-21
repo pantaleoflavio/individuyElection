@@ -1,4 +1,4 @@
-# Use an Ubuntu 18.04 base for our staging server
+# Use a Debian base for our staging server
 FROM debian:buster
 
 # Install necessary packages
