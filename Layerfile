@@ -1,7 +1,7 @@
-# Usa una base Ubuntu 18.04 per il nostro server di staging
-FROM ubuntu:18.04
+# Use an Ubuntu 18.04 base for our staging server
+FROM debian:buster
 
-# Aggiorna e installa i pacchetti necessari
+# Install necessary packages
 RUN apt-get update && apt-get install -y \
     npm \
     nodejs \
@@ -10,16 +10,16 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Installa una versione specifica di Node.js
+# Install specific version of Node.js
 RUN npm install -g n
 RUN n 20.10.00
 
-# Installa Composer
+# Install Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN php -r "unlink('composer-setup.php');"
 
-# Espone il webserver nel server di staging come link sicuro.
-# Ogni volta che qualcuno clicca sul link, caricheremo questo server di staging e inoltreremo
-# le loro richieste ad esso.
+# Expose the webserver in the staging server as a secure link.
+# Whenever someone clicks the link, we'll load this staging server and forward
+# their requests to it.
 EXPOSE WEBSITE http://localhost:80
