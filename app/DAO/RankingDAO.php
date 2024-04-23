@@ -15,7 +15,7 @@ class RankingDAO extends DB {
             $stmt->execute();
             $rankings = [];
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $rankings[] = new Ranking($row['id_ranking'], $row['ranking_name'], $row['description'], $row['status'], $row['category_id']);
+                $rankings[] = new Ranking($row['id_ranking'], $row['ranking_name'], $row['description'], $row['status'], $row['category_id'], $row['include_inactive']);
             }
             return $rankings;
         } catch (PDOException $e) {
@@ -30,7 +30,7 @@ class RankingDAO extends DB {
             $stmt->execute([$category]);
             $rankings = [];
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $rankings[] = new Ranking($row['id_ranking'], $row['ranking_name'], $row['description'], $row['status'], $row['category_id']);
+                $rankings[] = new Ranking($row['id_ranking'], $row['ranking_name'], $row['description'], $row['status'], $row['category_id'], $row['include_inactive']);
             }
             return $rankings;
         } catch (PDOException $e) {
@@ -50,7 +50,8 @@ class RankingDAO extends DB {
                     $rankingData['ranking_name'],
                     $rankingData['description'],
                     $rankingData['status'],
-                    $rankingData['category_id']
+                    $rankingData['category_id'],
+                    $rankingData['include_inactive']
                 );
                 return $ranking;
             }
@@ -94,13 +95,13 @@ class RankingDAO extends DB {
         }
     }
 
-    public function addRanking($rankingName, $description, $rankingType, $status, $categoryId) {
+    public function addRanking($rankingName, $description, $rankingType, $status, $categoryId, $includeInactive) {
         try {
 
-            $sql = "INSERT INTO list_ranking (ranking_name, description, status, category_id) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO list_ranking (ranking_name, description, status, category_id, include_nactive) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $this->connect()->prepare($sql);
     
-            $stmt->execute([$rankingName, $description, $rankingType, $status, $categoryId]);
+            $stmt->execute([$rankingName, $description, $rankingType, $status, $categoryId, $includeInactive]);
     
             return $this->connect()->lastInsertId();
         } catch (PDOException $e) {
@@ -109,6 +110,12 @@ class RankingDAO extends DB {
         }
     }
     
-    
+    public function isRankingIncludingInactive($id_ranking) {
+        $sql = "SELECT include_inactive FROM list_ranking WHERE id_ranking = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$id_ranking]);
+        $includeInactive = $stmt->fetchColumn();
+        return $includeInactive;
+    }
 
 }

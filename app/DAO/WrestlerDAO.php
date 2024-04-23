@@ -11,7 +11,8 @@ class WrestlerDAO extends DB {
 
     public function getSingleWrestlerPerId($id) {
         try {
-            $stmt = $this->connect()->prepare("SELECT w.id_wrestler, w.name, w.country, w.category_id, w.federation_id, f.name AS federation
+            // Aggiunta di w.is_active alla SELECT query
+            $stmt = $this->connect()->prepare("SELECT w.id_wrestler, w.name, w.country, w.category_id, w.federation_id, f.name AS federation, w.is_active
                                               FROM wrestlers w
                                               LEFT JOIN federations f ON w.federation_id = f.id_federation
                                               WHERE w.id_wrestler = ?");
@@ -23,7 +24,8 @@ class WrestlerDAO extends DB {
                     $wrestlerDB['name'], 
                     $wrestlerDB['country'], 
                     $wrestlerDB['category_id'],
-                    $wrestlerDB['federation_id']
+                    $wrestlerDB['federation_id'],
+                    $wrestlerDB['is_active'] // Assicurati che questo campo sia correttamente inserito nell'oggetto Wrestler
                 );
             }
             return null;
@@ -32,23 +34,19 @@ class WrestlerDAO extends DB {
             return null;
         }
     }
-
-    public function getAllWrestlers() {
-        try {
-            $sql = "SELECT w.id_wrestler, w.name, w.country, 
-                        IFNULL(c.name, 'Pesi Massimi') AS category_name, 
-                        f.name AS federation_name, w.federation_id 
-                    FROM wrestlers w
-                    LEFT JOIN categories c ON w.category_id = c.category_id
-                    LEFT JOIN federations f ON w.federation_id = f.id_federation";
-            $stmt = $this->connect()->prepare($sql);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            error_log("PDOException in getAllWrestlers: " . $e->getMessage());
-            return [];
+    
+    public function getAllWrestlers($includeInactive = false) {
+        $sql = "SELECT w.id_wrestler, w.name, w.country, IFNULL(c.name, 'Pesi Massimi') AS category_name, f.name AS federation_name, w.federation_id, w.is_active 
+                FROM wrestlers w
+                LEFT JOIN categories c ON w.category_id = c.category_id
+                LEFT JOIN federations f ON w.federation_id = f.id_federation";
+        if (!$includeInactive) {
+            $sql .= " WHERE w.is_active = 1";
         }
-    }
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }    
     
 
     public function getAllWrestlersPerCategory($categoryId) {
@@ -76,11 +74,11 @@ class WrestlerDAO extends DB {
     }
     
     
-    public function updateWrestler($id, $name, $country, $categoryId, $federationId) {
+    public function updateWrestler($id, $name, $country, $categoryId, $federationId, $is_active) {
         try {
-            $sql = "UPDATE wrestlers SET name = ?, country = ?, category_id = ?, federation_id = ? WHERE id_wrestler = ?";
+            $sql = "UPDATE wrestlers SET name = ?, country = ?, category_id = ?, federation_id = ?, is_active = ? WHERE id_wrestler = ?";
             $stmt = $this->connect()->prepare($sql);
-            $stmt->execute([$name, $country, $categoryId, $federationId, $id]);
+            $stmt->execute([$name, $country, $categoryId, $federationId, $id,  $is_active]);
             return $stmt->rowCount();  // Restituisce il numero di righe modificate
         } catch (PDOException $e) {
             error_log("PDOException in updateWrestler: " . $e->getMessage());
@@ -88,11 +86,11 @@ class WrestlerDAO extends DB {
         }
     }
 
-    public function addWrestler($name, $country, $categoryId, $federationId) {
+    public function addWrestler($name, $country, $categoryId, $federationId, $isActive) {
         try {
-            $sql = "INSERT INTO wrestlers (name, country, category_id, federation_id) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO wrestlers (name, country, category_id, federation_id) VALUES (?, ?, ?, ?, ?)";
             $stmt = $this->connect()->prepare($sql);
-            $stmt->execute([$name, $country, $categoryId, $federationId]);
+            $stmt->execute([$name, $country, $categoryId, $federationId, $isActive]);
             return $stmt->rowCount();
         } catch (PDOException $e) {
             error_log("PDOException in addWrestler: " . $e->getMessage());

@@ -11,8 +11,9 @@ if (isset($_POST['add_wrestler'])) {
     $country = $_POST['country'];
     $categoryId = !empty($_POST['category_id']) ? $_POST['category_id'] : NULL;
     $federationId = !empty($_POST['federation_id']) ? $_POST['federation_id'] : NULL;
+    $is_active = $_POST['is_active'];
 
-    $result = $wrestlerController->addWrestler($name, $country, $categoryId, $federationId);
+    $result = $wrestlerController->addWrestler($name, $country, $categoryId, $federationId, $is_active);
     if ($result) {
         echo "<script>alert('Wrestler aggiunto con successo!')</script>";
         // Ricarica dopo l'inserimento
@@ -37,6 +38,11 @@ if (isset($_POST['add_wrestler'])) {
                                 <?php echo htmlspecialchars($wrestler['category_name']); ?> - 
                                 <?php echo htmlspecialchars($wrestler['country']); ?> - 
                                 <?php echo htmlspecialchars($wrestler['federation_name']); ?> - 
+                                <?php if ($wrestler['is_active'] === 1): ?>
+                                    <?php echo 'in attivita'; ?> - 
+                                <?php else : ?>
+                                    <?php echo 'ritirato'; ?> - 
+                                <?php endif; ?>
                                 <a href="index.php?page=admin_edit_wrestler&id_wrestler=<?php echo $wrestler['id_wrestler']; ?>">Modifica</a>
                             </li>
                         <?php endforeach; ?>
@@ -71,6 +77,13 @@ if (isset($_POST['add_wrestler'])) {
                                 <?php foreach ($federations as $federation): ?>
                                     <option value="<?php echo $federation['id_federation']; ?>"><?php echo htmlspecialchars($federation['name']); ?></option>
                                 <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="is_active">Stato Lottatore:</label>
+                            <select name="is_active" id="is_active">
+                                <option value="1">In attivita</option>
+                                <option value="0">Ritirato</option>
                             </select>
                         </div>
                         <button type="submit" name="add_wrestler" class="btn btn-primary">Salva</button>

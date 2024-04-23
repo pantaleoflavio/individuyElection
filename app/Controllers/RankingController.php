@@ -32,7 +32,11 @@ class RankingController {
         return $this->rankingDAO->getRankingsWithTotalScores();
     }
 
-    public function addRanking($rankingName, $description, $rankingType, $status, $categoryId) {
-        return $this->rankingDAO->addRanking($rankingName, $rankingType, $description, $status, $categoryId);
+    public function addRanking($rankingName, $description, $rankingType, $status, $categoryId, $includeInactive) {
+        return $this->rankingDAO->addRanking($rankingName, $rankingType, $description, $status, $categoryId, $includeInactive);
+    }
+    
+    public function isRankingIncludingInactive($id_ranking) {
+        return $this->rankingDAO->isRankingIncludingInactive($id_ranking);
     }
 }

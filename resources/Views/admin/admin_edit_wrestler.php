@@ -16,8 +16,9 @@ if (isset($_POST['updateWrestler'])) {
     $country = $_POST['country'];
     $categoryId = $_POST['category_id'] === '' ? NULL : $_POST['category_id'];
     $federationId = $_POST['federation_id'];
+    $is_active = $_POST['is_active'];
 
-    $updateResult = $wrestlerController->updateWrestler($id, $name, $country, $categoryId, $federationId);
+    $updateResult = $wrestlerController->updateWrestler($id, $name, $country, $categoryId, $federationId, $is_active);
     if ($updateResult) {
         echo "<script>alert('Wrestler aggiornato con successo!')</script>";
         echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=admin_wrestler'</script>";
@@ -63,6 +64,13 @@ if (isset($_POST['updateWrestler'])) {
                             <?php echo htmlspecialchars($federation['name']); ?>
                         </option>
                     <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="is_active">Attivita:</label>
+                <select name="is_active" id="is_active">
+                    <option value="1">In attivita</option>
+                    <option value="0">Ritirato</option>
                 </select>
             </div>
             <button type="submit" name="updateWrestler" class="btn btn-primary">Update</button>

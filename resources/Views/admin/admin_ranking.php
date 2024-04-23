@@ -11,6 +11,7 @@ if (isset($_POST['add_ranking'])) {
     $rankingType = $_POST['rankingType'];
     $status = $_POST['status'];
     $categoryId = $_POST['category_id'];
+    $includeInactive = $_POST['include_inactive'];
 }
 
 ?>
@@ -27,6 +28,7 @@ if (isset($_POST['add_ranking'])) {
                         <tr>
                             <th>Titolo</th>
                             <th>descrizione</th>
+                            <th>E' anche per gli inattivi?</th>
                             <th>status</th>
                             <th></th>
                         </tr>
@@ -36,6 +38,11 @@ if (isset($_POST['add_ranking'])) {
                             <tr>
                                 <td><?php echo htmlspecialchars($ranking->rankingName); ?></td>
                                 <td><?php echo htmlspecialchars($ranking->description); ?></td>
+                                <?php if($ranking->includeInactive) : ?>
+                                    <td class="">si</td>
+                                <?php else : ?>
+                                    <td class="">no</td>
+                                <?php endif; ?>
                                 <?php if($ranking->status === 1) : ?>
                                     <td class="bg-success">Attivo</td>
                                 <?php else : ?>
@@ -88,6 +95,11 @@ if (isset($_POST['add_ranking'])) {
                         }
                     ?>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="include_inactive">Includere wrestler inattivi:</label>
+                <input type="checkbox" id="include_inactive" name="include_inactive">
             </div>
             <button type="submit" name="add_ranking" class="btn btn-primary">Aggiungi Classifica</button>
         </form>
