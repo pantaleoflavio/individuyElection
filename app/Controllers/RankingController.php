@@ -33,7 +33,7 @@ class RankingController {
     }
 
     public function addRanking($rankingName, $description, $rankingType, $status, $categoryId, $includeInactive) {
-        return $this->rankingDAO->addRanking($rankingName, $rankingType, $description, $status, $categoryId, $includeInactive);
+        return $this->rankingDAO->addRanking($rankingName, $description, $rankingType, $status, $categoryId, $includeInactive);
     }
     
     public function isRankingIncludingInactive($id_ranking) {

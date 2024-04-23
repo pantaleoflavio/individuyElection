@@ -1,6 +1,9 @@
 <!-- resources/Views/admin/admin_ranking.php -->
 
 <?php
+
+use App\Controllers\RankingController;
+
 $rankings = $rankingController->getAllRanking();
 $categories = $categoryController->getAllCategories();
 
@@ -10,8 +13,18 @@ if (isset($_POST['add_ranking'])) {
     $description = $_POST['description'];
     $rankingType = $_POST['rankingType'];
     $status = $_POST['status'];
-    $categoryId = $_POST['category_id'];
+    $categoryId = isset($_POST['category_id']) && $_POST['category_id'] !== '' ? $_POST['category_id'] : null;
     $includeInactive = $_POST['include_inactive'];
+
+    $addRanking = $rankingController->addRanking($rankingName, $description, $rankingType, $status, $categoryId, $includeInactive);
+
+    var_dump($addRanking);
+    if ($addRanking) {
+        echo "<script>alert('Ranking aggiunto con successo!')</script>";
+        echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=admin_ranking'</script>";
+    } else {
+        echo "<script>alert('Errore.')</script>";
+    }
 }
 
 ?>
@@ -61,7 +74,7 @@ if (isset($_POST['add_ranking'])) {
         <div class="row">
     <div class="col-md-12">
         <h2>Aggiungi Classifiche</h2>
-        <form action="path_to_your_form_handling_script.php" method="post">
+        <form action="" method="post">
             <div class="form-group">
                 <label for="ranking_name">Nome della Classifica:</label>
                 <input type="text" class="form-control" id="ranking_name" name="ranking_name" required>
@@ -98,9 +111,17 @@ if (isset($_POST['add_ranking'])) {
             </div>
 
             <div class="form-group">
-                <label for="include_inactive">Includere wrestler inattivi:</label>
-                <input type="checkbox" id="include_inactive" name="include_inactive">
+                <label>Includere wrestler inattivi:</label>
+                <div>
+                    <input type="radio" id="include_inactive_yes" name="include_inactive" value="1" <?php echo (isset($_POST['include_inactive']) && $_POST['include_inactive'] == '1') ? 'checked' : ''; ?>>
+                    <label for="include_inactive_yes">Sì</label>
+                </div>
+                <div>
+                    <input type="radio" id="include_inactive_no" name="include_inactive" value="0" <?php echo (!isset($_POST['include_inactive']) || $_POST['include_inactive'] == '0') ? 'checked' : ''; ?>>
+                    <label for="include_inactive_no">No</label>
+                </div>
             </div>
+
             <button type="submit" name="add_ranking" class="btn btn-primary">Aggiungi Classifica</button>
         </form>
     </div>
