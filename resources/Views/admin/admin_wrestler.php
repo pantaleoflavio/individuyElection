@@ -12,7 +12,7 @@ if (isset($_POST['add_wrestler'])) {
     $categoryId = !empty($_POST['category_id']) ? $_POST['category_id'] : NULL;
     $federationId = !empty($_POST['federation_id']) ? $_POST['federation_id'] : NULL;
     $is_active = $_POST['is_active'];
-
+    
     $result = $wrestlerController->addWrestler($name, $country, $categoryId, $federationId, $is_active);
     if ($result) {
         echo "<script>alert('Wrestler aggiunto con successo!')</script>";

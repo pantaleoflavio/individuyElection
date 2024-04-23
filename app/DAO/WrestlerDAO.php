@@ -78,7 +78,7 @@ class WrestlerDAO extends DB {
         try {
             $sql = "UPDATE wrestlers SET name = ?, country = ?, category_id = ?, federation_id = ?, is_active = ? WHERE id_wrestler = ?";
             $stmt = $this->connect()->prepare($sql);
-            $stmt->execute([$name, $country, $categoryId, $federationId, $id,  $is_active]);
+            $stmt->execute([$name, $country, $categoryId, $federationId, $is_active, $id]);
             return $stmt->rowCount();  // Restituisce il numero di righe modificate
         } catch (PDOException $e) {
             error_log("PDOException in updateWrestler: " . $e->getMessage());
@@ -88,7 +88,7 @@ class WrestlerDAO extends DB {
 
     public function addWrestler($name, $country, $categoryId, $federationId, $isActive) {
         try {
-            $sql = "INSERT INTO wrestlers (name, country, category_id, federation_id) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO wrestlers (name, country, category_id, federation_id, is_active) VALUES (?, ?, ?, ?, ?)";
             $stmt = $this->connect()->prepare($sql);
             $stmt->execute([$name, $country, $categoryId, $federationId, $isActive]);
             return $stmt->rowCount();
