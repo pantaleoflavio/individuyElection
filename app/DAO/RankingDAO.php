@@ -11,11 +11,19 @@ class RankingDAO extends DB {
     
     public function getAllRanking() {
         try {
-            $stmt = $this->connect()->prepare("SELECT * FROM list_ranking");
+            $stmt = $this->connect()->prepare("SELECT id_ranking, ranking_name, description, ranking, status, category_id, include_inactive FROM list_ranking");
             $stmt->execute();
             $rankings = [];
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $rankings[] = new Ranking($row['id_ranking'], $row['ranking_name'], $row['description'], $row['status'], $row['category_id'], $row['include_inactive']);
+                $rankings[] = new Ranking(
+                    $row['id_ranking'],
+                    $row['ranking_name'],
+                    $row['description'],
+                    $row['ranking'],  // Aggiunto
+                    $row['status'],
+                    $row['category_id'],
+                    $row['include_inactive']
+                );
             }
             return $rankings;
         } catch (PDOException $e) {
@@ -23,14 +31,22 @@ class RankingDAO extends DB {
             return [];
         }
     }
-
+    
     public function getRankingPerCategory($category) {
         try {
-            $stmt = $this->connect()->prepare("SELECT * FROM list_ranking WHERE ranking = ?");
+            $stmt = $this->connect()->prepare("SELECT id_ranking, ranking_name, description, ranking, status, category_id, include_inactive FROM list_ranking WHERE ranking = ?");
             $stmt->execute([$category]);
             $rankings = [];
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $rankings[] = new Ranking($row['id_ranking'], $row['ranking_name'], $row['description'], $row['status'], $row['category_id'], $row['include_inactive']);
+                $rankings[] = new Ranking(
+                    $row['id_ranking'],
+                    $row['ranking_name'],
+                    $row['description'],
+                    $row['ranking'],  // Aggiunto
+                    $row['status'],
+                    $row['category_id'],
+                    $row['include_inactive']
+                );
             }
             return $rankings;
         } catch (PDOException $e) {
@@ -38,10 +54,12 @@ class RankingDAO extends DB {
             return [];
         }
     }
+    
 
     public function getRankingPerId($id) {
         try {
-            $stmt = $this->connect()->prepare("SELECT * FROM list_ranking WHERE id_ranking = ?");
+            // Aggiunta di `ranking` alla selezione
+            $stmt = $this->connect()->prepare("SELECT id_ranking, ranking_name, description, ranking, status, category_id, include_inactive FROM list_ranking WHERE id_ranking = ?");
             $stmt->execute([$id]);
             $rankingData = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($rankingData) {
@@ -49,6 +67,7 @@ class RankingDAO extends DB {
                     $rankingData['id_ranking'],
                     $rankingData['ranking_name'],
                     $rankingData['description'],
+                    $rankingData['ranking'],
                     $rankingData['status'],
                     $rankingData['category_id'],
                     $rankingData['include_inactive']
@@ -61,6 +80,7 @@ class RankingDAO extends DB {
             return null;
         }
     }
+    
 
     public function getRankingDetailsWithScores($idRanking) {
         try {
@@ -113,5 +133,18 @@ class RankingDAO extends DB {
         $includeInactive = $stmt->fetchColumn();
         return $includeInactive;
     }
+
+    public function updateRanking($id, $rankingName, $description, $rankingType, $status, $categoryId, $includeInactive) {
+        try {
+            $sql = "UPDATE list_ranking SET ranking_name = ?, description = ?, ranking = ?, status = ?, category_id = ?, include_inactive = ? WHERE id_ranking = ?";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([ $rankingName, $description, $rankingType, $status, $categoryId, $includeInactive, $id]);
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            error_log("PDOException in updateRanking: " . $e->getMessage());
+            return false;
+        }
+    }
+    
 
 }

@@ -2,8 +2,6 @@
 
 <?php
 
-use App\Controllers\RankingController;
-
 $rankings = $rankingController->getAllRanking();
 $categories = $categoryController->getAllCategories();
 
@@ -18,10 +16,9 @@ if (isset($_POST['add_ranking'])) {
 
     $addRanking = $rankingController->addRanking($rankingName, $description, $rankingType, $status, $categoryId, $includeInactive);
 
-    var_dump($addRanking);
     if ($addRanking) {
         echo "<script>alert('Ranking aggiunto con successo!')</script>";
-        echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=admin_ranking'</script>";
+        $rankings = $rankingController->getAllRanking();
     } else {
         echo "<script>alert('Errore.')</script>";
     }
@@ -49,7 +46,7 @@ if (isset($_POST['add_ranking'])) {
                     <tbody>
                         <?php foreach ($rankings as $ranking): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($ranking->rankingName); ?></td>
+                                <td><?php echo htmlspecialchars($ranking->name); ?></td>
                                 <td><?php echo htmlspecialchars($ranking->description); ?></td>
                                 <?php if($ranking->includeInactive) : ?>
                                     <td class="">si</td>
@@ -62,7 +59,7 @@ if (isset($_POST['add_ranking'])) {
                                     <td class="bg-secondary">Inattivo</td>
                                 <?php endif; ?>
                                 <td>
-                                    <a href="index.php?page=admin_edit_ranking&id_ranking=<?php echo $ranking->idRanking; ?>">Modifica</a>
+                                    <a href="index.php?page=admin_edit_ranking&id_ranking=<?php echo $ranking->id; ?>">Modifica</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
