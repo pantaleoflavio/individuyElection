@@ -31,4 +31,8 @@ class RankingController {
     public function getRankingsWithTotalScores() {
         return $this->rankingDAO->getRankingsWithTotalScores();
     }
+
+    public function addRanking($rankingName, $description, $rankingType, $status, $categoryId) {
+        return $this->rankingDAO->addRanking($rankingName, $rankingType, $description, $status, $categoryId);
+    }
 }

@@ -99,6 +99,7 @@ switch ($page) {
     case 'admin_edit_category':
     case 'admin_federation':
     case 'admin_edit_federation':
+    case 'admin_ranking':
         include "resources/Views/admin/" . $page . ".php";
         break;
     // ...altri casi...

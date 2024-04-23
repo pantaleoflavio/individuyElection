@@ -93,6 +93,22 @@ class RankingDAO extends DB {
             return [];
         }
     }
+
+    public function addRanking($rankingName, $description, $rankingType, $status, $categoryId) {
+        try {
+
+            $sql = "INSERT INTO list_ranking (ranking_name, description, status, category_id) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $this->connect()->prepare($sql);
+    
+            $stmt->execute([$rankingName, $description, $rankingType, $status, $categoryId]);
+    
+            return $this->connect()->lastInsertId();
+        } catch (PDOException $e) {
+            error_log("PDOException in addRanking: " . $e->getMessage());
+            return false;
+        }
+    }
+    
     
 
 }

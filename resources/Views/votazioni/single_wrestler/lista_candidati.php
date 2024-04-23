@@ -3,6 +3,16 @@
     
     $id_cat = isset($_GET['id_cat']) ? $_GET['id_cat'] : null;
 
+    if (isset($_GET['id_ranking'])) {
+        $rankingIsActive = $rankingController->getRankingPerId($_GET['id_ranking'])->status;
+
+        if ($rankingIsActive === 0) {
+            echo "<script>alert('Votazioni chiuse!'); window.location.href='index.php';</script>";
+        }
+    }
+
+
+
     if ($id_cat == '') {
         $listWrestlers = $wrestlerController->getAllWrestlers();
     } else {
