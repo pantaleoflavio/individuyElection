@@ -24,4 +24,8 @@ class UserController {
     public function getAllUsers() {
         return $this->userDAO->getAllUsers();
     }
+    
+    public function setUserRole($id, $role) {
+        return $this->userDAO->setUserRole($id, $role);
+    }
 }
