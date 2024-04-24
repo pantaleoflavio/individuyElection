@@ -50,5 +50,16 @@ class CategoryDAO extends DB {
             return false;
         }
     }
+
+    public function deleteCategory($id) {
+        try {
+            $stmt = $this->connect()->prepare("DELETE FROM categories WHERE category_id = ?");
+            $stmt->execute([$id]);
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            error_log("PDOException in deleteCategory: " . $e->getMessage());
+            return false;
+        }
+    }
     
 }

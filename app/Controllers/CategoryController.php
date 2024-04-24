@@ -27,5 +27,9 @@ class CategoryController {
     public function updateCategory($id, $name) {
         return $this->categoryDAO->updateCategory($id, $name);
     }
+
+    public function deleteCategory($id) {
+        return $this->categoryDAO->deleteCategory($id);
+    }
     
 }

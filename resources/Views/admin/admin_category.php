@@ -19,8 +19,17 @@ if (isset($_POST['add_category'])) {
     }
 }
 
-if (isset($_GET['delete'])) {
-    # code...
+if (isset($_POST['delete'])) {
+    $categoryId = $_POST['id_category'];
+
+    $result = $categoryController->deleteCategory($categoryId);
+    
+    if ($result) {
+        //echo 'ok';
+        echo "<script>alert('Categoria eliminata con successo.'); window.location.href='index.php?page=admin_category';</script>";
+    } else {
+        echo "<script>alert('Errore nell'eliminazione della categoria.')</script>";
+    }
 }
 
 ?>
@@ -50,7 +59,11 @@ if (isset($_GET['delete'])) {
                                     <a href="index.php?page=admin_edit_category&id_category=<?php echo $category['category_id']; ?>">Modifica</a>
                                 </td>
                                 <td>
-                                    <a href="">Elimina</a>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="id_category" value="<?php echo $category['category_id']; ?>">
+                                        <button class="btn btn-secondary" type="submit" name="delete" onclick="return confirm('Sei sicuro di voler eliminare questa categoria?');">Elimina</button>
+                                    </form>
+                                    
                                 </td>
                             </tr>
                         <?php endforeach; ?>
