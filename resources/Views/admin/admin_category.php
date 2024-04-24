@@ -18,24 +18,49 @@ if (isset($_POST['add_category'])) {
         echo "<script>alert('Il nome della categoria non può essere vuoto.')</script>";
     }
 }
+
+if (isset($_GET['delete'])) {
+    # code...
+}
+
 ?>
 
 <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="container">
         <h1>Admin - Gestione Categorie</h1>
+        <!-- Category List-->
         <div class="row">
-            <div class="col-md-6">
-                <h2>Lista Categorie</h2>
-                <ul>
-                    <?php foreach ($categories as $category): ?>
-                        <li>
-                            <?php echo htmlspecialchars($category['name']); ?>
-                            <a href="index.php?page=admin_edit_category&id_category=<?php echo $category['category_id']; ?>">Modifica</a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+            <div class="col-md-12">
+                <h2>Lista Stili</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Titolo</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($categories as $category): ?>
+                            <tr>
+                                <td>
+                                    <?php echo htmlspecialchars($category['name']); ?>
+                                </td>
+                                <td>
+                                    <a href="index.php?page=admin_edit_category&id_category=<?php echo $category['category_id']; ?>">Modifica</a>
+                                </td>
+                                <td>
+                                    <a href="">Elimina</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
-            <div class="col-md-6">
+        </div>
+                <!-- Category Adding-->
+        <div class="row">
+            <div class="col-md-12">
                 <h2>Aggiungi Categoria</h2>
                 <form action="" method="post">
                     <div class="form-group">

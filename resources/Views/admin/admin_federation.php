@@ -23,20 +23,43 @@ if (isset($_POST['add_federation'])) {
 <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="container">
         <h1>Admin - Gestione Federazioni</h1>
+
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <h2>Lista Federazioni</h2>
-                <ul>
-                    <?php foreach ($federations as $federation): ?>
-                        <li>
-                            <?php echo htmlspecialchars($federation['name']); ?> - 
-                            <?php echo htmlspecialchars($federation['description']); ?>
-                            <a href="index.php?page=admin_edit_federation&id_federation=<?php echo $federation['id_federation']; ?>">Modifica</a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>descrizione</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($federations as $federation): ?>
+                            <tr>
+                                <td>
+                                    <?php echo htmlspecialchars($federation['name']); ?>
+                                </td>
+                                <td>
+                                    <?php echo htmlspecialchars($federation['description']); ?>
+                                </td>
+                                <td>
+                                    <a href="index.php?page=admin_edit_federation&id_federation=<?php echo $federation['id_federation']; ?>">Modifica</a>
+                                </td>
+                                <td>
+                                    <a href="">Elimina</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
-            <div class="col-md-6">
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
                 <h2>Aggiungi Federazione</h2>
                 <form action="" method="post">
                     <div class="form-group">
@@ -51,5 +74,6 @@ if (isset($_POST['add_federation'])) {
                 </form>
             </div>
         </div>
+
     </div>
 </div>

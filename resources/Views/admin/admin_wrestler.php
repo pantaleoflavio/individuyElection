@@ -26,29 +26,62 @@ if (isset($_POST['add_wrestler'])) {
 ?>
 <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="container">
-        <div class="container">
             <h1>Admin - Wrestler Management</h1>
+            
+            <!-- Wrestler List-->
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <h2>Lista Wrestler</h2>
-                    <ul>
-                        <?php foreach ($wrestlers as $wrestler): ?>
-                            <li>   
-                                <?php echo htmlspecialchars($wrestler['name']); ?> - 
-                                <?php echo htmlspecialchars($wrestler['category_name']); ?> - 
-                                <?php echo htmlspecialchars($wrestler['country']); ?> - 
-                                <?php echo htmlspecialchars($wrestler['federation_name']); ?> - 
-                                <?php if ($wrestler['is_active'] === 1): ?>
-                                    <?php echo 'in attivita'; ?> - 
-                                <?php else : ?>
-                                    <?php echo 'ritirato'; ?> - 
-                                <?php endif; ?>
-                                <a href="index.php?page=admin_edit_wrestler&id_wrestler=<?php echo $wrestler['id_wrestler']; ?>">Modifica</a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Stile</th>
+                                <th>Nazione</th>
+                                <th>nome federazione</th>
+                                <th>Attivita</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($wrestlers as $wrestler): ?>
+                                <tr>
+                                    <td>
+                                        <?php echo htmlspecialchars($wrestler['name']); ?> 
+                                    </td>
+                                    <td>
+                                        <?php echo htmlspecialchars($wrestler['category_name']); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo htmlspecialchars($wrestler['country']); ?> 
+                                    </td>
+                                    <td>
+                                        <?php echo htmlspecialchars($wrestler['federation_name']); ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($wrestler['is_active'] === 1): ?>
+                                            <?php echo 'in attivita'; ?>
+                                        <?php else : ?>
+                                            <?php echo 'ritirato'; ?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <a href="index.php?page=admin_edit_wrestler&id_wrestler=<?php echo $wrestler['id_wrestler']; ?>">Modifica</a>
+                                    </td>
+                                    <td>
+                                        <a href="">Elimina</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-md-6">
+             </div>
+
+            <!-- Wrestler Adding-->
+            <div class="row">
+                <div class="col-md-12">
                     <h2>Aggiungi Wrestler</h2>
                     <form action="" method="post">
                         <input type="hidden" name="id" value="" /> <!-- Usato per modificare -->
@@ -90,6 +123,7 @@ if (isset($_POST['add_wrestler'])) {
                     </form>
                 </div>
             </div>
-        </div>
+
+
     </div>
 </div>
