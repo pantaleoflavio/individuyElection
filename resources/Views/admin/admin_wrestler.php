@@ -57,7 +57,9 @@ if (isset($_POST['add_wrestler'])) {
                                         <?php echo htmlspecialchars($wrestler['country']); ?> 
                                     </td>
                                     <td>
-                                        <?php echo htmlspecialchars($wrestler['federation_name']); ?>
+                                        <?php
+                                            echo (!empty($wrestler['federation_name'])) ? htmlspecialchars($wrestler['federation_name']) : 'Nessuna federazione';
+                                        ?>
                                     </td>
                                     <td>
                                         <?php if ($wrestler['is_active'] === 1): ?>

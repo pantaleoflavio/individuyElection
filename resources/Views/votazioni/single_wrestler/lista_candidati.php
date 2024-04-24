@@ -2,23 +2,29 @@
 <?php
     
     $id_cat = isset($_GET['id_cat']) ? $_GET['id_cat'] : null;
-
+    
     if (isset($_GET['id_ranking'])) {
         $rankingIsActive = $rankingController->getRankingPerId($_GET['id_ranking'])->status;
         $rankingDetails = $rankingController->getRankingPerId($_GET['id_ranking']);
         $includeInactive = $rankingDetails ? $rankingDetails->includeInactive : false;
 
+        
         if ($rankingIsActive === 0) {
             echo "<script>alert('Votazioni chiuse!'); window.location.href='index.php';</script>";
         }
     }
-
-
+    
     if ($id_cat == '') {
-        $listWrestlers = $wrestlerController->getAllWrestlers($includeInactive);
+        if (isset($_GET['id_ranking'])) {
+            $listWrestlers = $wrestlerController->getAllWrestlers($includeInactive);
+        } else {
+            $listWrestlers = $wrestlerController->getAllWrestlers();
+        }
+        
     } else {
         $listWrestlers = $wrestlerController->getAllWrestlersPerCategory($id_cat);
     }
+
 ?>
 
 <main class="container">
