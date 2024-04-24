@@ -32,5 +32,9 @@ class FederationController {
         return $this->federationDAO->updateFederation($id, $name, $description);
     }
     
+    public function deleteFederation($id) {
+        return $this->federationDAO->deleteFederation($id);
+    }
+    
 
 }

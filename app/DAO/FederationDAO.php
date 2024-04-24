@@ -78,5 +78,15 @@ class FederationDAO extends DB {
         }
     }
     
+    public function deleteFederation($id) {
+        try {
+            $stmt = $this->connect()->prepare("DELETE FROM federations WHERE id_federation = ?");
+            $stmt->execute([$id]);
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            error_log("PDOException in deleteFederation: " . $e->getMessage());
+            return false;
+        }
+    }
 
 }

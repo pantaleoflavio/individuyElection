@@ -45,4 +45,16 @@ class UserDAO extends DB {
             return [];
         }
     }
+
+    public function setUserRole($id, $role) {
+        try {
+            $stmt = $this->connect()->prepare("UPDATE users SET role = ? WHERE id_user = ?");
+            $stmt->execute([$role, $id]);
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            error_log("PDOException in setUserRole: " . $e->getMessage());
+            return false;
+        }
+    }
+    
 }

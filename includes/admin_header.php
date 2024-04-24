@@ -49,7 +49,7 @@ if (!isset($_SESSION['userId']) && $_SESSION['role'] !== 'admin') {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="index.php?page=admin_users">
                                 <i class="fa-solid fa-user"></i> lista Users
                             </a>
                         </li>
@@ -69,8 +69,8 @@ if (!isset($_SESSION['userId']) && $_SESSION['role'] !== 'admin') {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa-solid fa-ticket"></i> Lista votazioni disponibili
+                            <a class="nav-link" href="index.php?page=admin_ranking">
+                                <i class="fa-solid fa-ticket"></i> Lista Ranking
                             </a>
                         </li>
                     </ul>

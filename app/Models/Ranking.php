@@ -1,23 +1,24 @@
 <?php
 namespace App\Models;
 class Ranking {
-
-    public $idRanking;
-    public $rankingName;
+    public $id;
+    public $name;
     public $description;
+    public $rankingType;
     public $status;
-    public $category_id;
+    public $categoryId;
+    public $includeInactive;
 
-    public function __construct($idRanking, $rankingName, $description, $status, $category_id) {
-        $this->idRanking = $idRanking;
-        $this->rankingName = $rankingName;
+    public function __construct($id, $name, $description, $rankingType, $status, $categoryId, $includeInactive) {
+        $this->id = $id;
+        $this->name = $name;
         $this->description = $description;
+        $this->rankingType = $rankingType;
         $this->status = $status;
-        $this->category_id = $category_id;
+        $this->categoryId = $categoryId;
+        $this->includeInactive = $includeInactive;
     }
-
-
-    
 }
+
 
 ?>

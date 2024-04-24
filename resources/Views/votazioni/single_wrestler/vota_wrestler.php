@@ -28,7 +28,7 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
 
 ?>
 
-<div class="container">
+<main class="container">
     <div class="container py-5">
         <h2 class="text-center mb-4">Vota per: <?= htmlspecialchars($wrestlerDetails->name); ?></h2>
     
@@ -45,10 +45,11 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
             <?php endif; ?>
             <?php if($wrestlerDetails->federationId != '') : ?>
                 <?php 
-                    $federation = $federationController->getFederationPerId($wrestlerDetails->federationId);
-                   
+                    $federation = $federationController->getFederationPerId($wrestlerDetails->federationId); 
                 ?>
-                <p><strong>Federazione:</strong> <?= htmlspecialchars($federation->name); ?></p>
+                <p><strong>Federazione:</strong> <?= htmlspecialchars($federation->name);?> </p>
+            <?php else : ?>
+                <p><strong>Federazione non disponibile</strong></p>
             <?php endif; ?>
             <!-- Aggiungi altri dettagli come necessario -->
         </div>
@@ -75,4 +76,4 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
             </div>
         </form>
     </div>
-</div>
+</main>

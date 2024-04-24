@@ -91,12 +91,16 @@ switch ($page) {
         break;
     //CASI DI Admin
     case 'admin':
+    case 'admin_users':
+    case 'admin_detail_user':
     case 'admin_wrestler':
     case 'admin_edit_wrestler':
     case 'admin_category':
     case 'admin_edit_category':
     case 'admin_federation':
     case 'admin_edit_federation':
+    case 'admin_ranking':
+    case 'admin_edit_ranking':
         include "resources/Views/admin/" . $page . ".php";
         break;
     // ...altri casi...

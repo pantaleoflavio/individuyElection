@@ -31,4 +31,20 @@ class RankingController {
     public function getRankingsWithTotalScores() {
         return $this->rankingDAO->getRankingsWithTotalScores();
     }
+
+    public function addRanking($rankingName, $description, $rankingType, $status, $categoryId, $includeInactive) {
+        return $this->rankingDAO->addRanking($rankingName, $description, $rankingType, $status, $categoryId, $includeInactive);
+    }
+    
+    public function isRankingIncludingInactive($id_ranking) {
+        return $this->rankingDAO->isRankingIncludingInactive($id_ranking);
+    }
+
+    public function updateRanking($id, $rankingName, $description, $rankingType, $status, $categoryId, $includeInactive) {
+        return $this->rankingDAO->updateRanking($id, $rankingName, $description, $rankingType, $status, $categoryId, $includeInactive);
+    }
+
+    public function deleteRanking($id) {
+        return $this->rankingDAO->deleteRanking($id);
+    }
 }

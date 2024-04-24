@@ -28,11 +28,16 @@ class WrestlerController {
         return $this->wrestlerDAO->getWrestlersByFederation($federationId);
     }
 
-    public function updateWrestler($id, $name, $country, $categoryId, $federationId) {
-        return $this->wrestlerDAO->updateWrestler($id, $name, $country, $categoryId, $federationId);
+    public function updateWrestler($id, $name, $country, $categoryId, $federationId, $is_active) {
+        return $this->wrestlerDAO->updateWrestler($id, $name, $country, $categoryId, $federationId, $is_active);
     }
-    public function addWrestler($name, $country, $categoryId, $federationId) {
-        return $this->wrestlerDAO->addWrestler($name, $country, $categoryId, $federationId);
+
+    public function addWrestler($name, $country, $categoryId, $federationId, $isActive) {
+        return $this->wrestlerDAO->addWrestler($name, $country, $categoryId, $federationId, $isActive);
+    }
+
+    public function deleteWrestler($id) {
+        return $this->wrestlerDAO->deleteWrestler($id);
     }
     
 }
