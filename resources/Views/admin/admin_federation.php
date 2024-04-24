@@ -18,6 +18,20 @@ if (isset($_POST['add_federation'])) {
         echo "<script>alert('Il nome della federazione non può essere vuoto')</script>";
     }
 }
+
+if (isset($_POST['delete'])) {
+    $federationId = $_POST['id_federation'];
+
+    $result = $federationController->deleteFederation($federationId);
+    
+    if ($result) {
+        //echo 'ok';
+        echo "<script>alert('Federazione eliminata con successo.'); window.location.href='index.php?page=admin_federation';</script>";
+    } else {
+        echo "<script>alert('Errore nell'eliminazione della Federazione.')</script>";
+    }
+}
+
 ?>
 
 <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -49,7 +63,10 @@ if (isset($_POST['add_federation'])) {
                                     <a href="index.php?page=admin_edit_federation&id_federation=<?php echo $federation['id_federation']; ?>">Modifica</a>
                                 </td>
                                 <td>
-                                    <a href="">Elimina</a>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="id_federation" value="<?php echo $federation['id_federation']; ?>">
+                                        <button class="btn btn-secondary" type="submit" name="delete" onclick="return confirm('Sei sicuro di voler eliminare questa federazione?');">Elimina</button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

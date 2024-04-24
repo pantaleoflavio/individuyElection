@@ -23,7 +23,7 @@ if (isset($_POST['delete'])) {
     $categoryId = $_POST['id_category'];
 
     $result = $categoryController->deleteCategory($categoryId);
-    
+
     if ($result) {
         //echo 'ok';
         echo "<script>alert('Categoria eliminata con successo.'); window.location.href='index.php?page=admin_category';</script>";
@@ -63,7 +63,6 @@ if (isset($_POST['delete'])) {
                                         <input type="hidden" name="id_category" value="<?php echo $category['category_id']; ?>">
                                         <button class="btn btn-secondary" type="submit" name="delete" onclick="return confirm('Sei sicuro di voler eliminare questa categoria?');">Elimina</button>
                                     </form>
-                                    
                                 </td>
                             </tr>
                         <?php endforeach; ?>
