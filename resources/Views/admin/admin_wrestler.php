@@ -23,6 +23,19 @@ if (isset($_POST['add_wrestler'])) {
     }
 }
 
+if (isset($_POST['delete'])) {
+    $wrestlerId = $_POST['id_wrestler'];
+
+    $result = $wrestlerController->deleteWrestler($wrestlerId);
+
+    if ($result) {
+        //echo 'ok';
+        echo "<script>alert('Wrestler eliminato con successo.'); window.location.href='index.php?page=admin_wrestler';</script>";
+    } else {
+        echo "<script>alert('Errore nell'eliminazione del Wrestler.')</script>";
+    }
+}
+
 ?>
 <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="container">
@@ -72,7 +85,10 @@ if (isset($_POST['add_wrestler'])) {
                                         <a href="index.php?page=admin_edit_wrestler&id_wrestler=<?php echo $wrestler['id_wrestler']; ?>">Modifica</a>
                                     </td>
                                     <td>
-                                        <a href="">Elimina</a>
+                                        <form action="" method="post">
+                                            <input type="hidden" name="id_wrestler" value="<?php echo $wrestler['id_wrestler']; ?>">
+                                            <button class="btn btn-secondary" type="submit" name="delete" onclick="return confirm('Sei sicuro di voler eliminare questo Wrestler?');">Elimina</button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

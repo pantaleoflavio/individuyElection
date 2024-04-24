@@ -98,6 +98,15 @@ class WrestlerDAO extends DB {
         }
     }
     
-
+    public function deleteWrestler($id) {
+        try {
+            $stmt = $this->connect()->prepare("DELETE FROM wrestlers WHERE id_wrestler = ?");
+            $stmt->execute([$id]);
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            error_log("PDOException in deleteCategory: " . $e->getMessage());
+            return false;
+        }
+    }
     
 }
