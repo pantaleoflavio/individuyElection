@@ -146,5 +146,15 @@ class RankingDAO extends DB {
         }
     }
     
+    public function deleteRanking($id) {
+        try {
+            $stmt = $this->connect()->prepare("DELETE FROM list_ranking WHERE id_ranking = ?");
+            $stmt->execute([$id]);
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            error_log("PDOException in deleteRanking: " . $e->getMessage());
+            return false;
+        }
+    }
 
 }

@@ -104,7 +104,7 @@ class WrestlerDAO extends DB {
             $stmt->execute([$id]);
             return $stmt->rowCount();
         } catch (PDOException $e) {
-            error_log("PDOException in deleteCategory: " . $e->getMessage());
+            error_log("PDOException in deleteWrestler: " . $e->getMessage());
             return false;
         }
     }

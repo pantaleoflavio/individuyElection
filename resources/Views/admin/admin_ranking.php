@@ -24,6 +24,19 @@ if (isset($_POST['add_ranking'])) {
     }
 }
 
+
+if (isset($_POST['delete'])) {
+    $rankingId = $_POST['id_ranking'];
+
+    $result = $rankingController->deleteRanking($rankingId);
+
+    if ($result) {
+        //echo 'ok';
+        echo "<script>alert('Ranking eliminato con successo.'); window.location.href='index.php?page=admin_ranking';</script>";
+    } else {
+        echo "<script>alert('Errore nell'eliminazione del Ranking.')</script>";
+    }
+}
 ?>
 
 <div class="col-md-9 ms-sm-auto col-lg-10 px-md-2">
@@ -40,6 +53,7 @@ if (isset($_POST['add_ranking'])) {
                             <th>descrizione</th>
                             <th>E' anche per gli inattivi?</th>
                             <th>status</th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -60,6 +74,12 @@ if (isset($_POST['add_ranking'])) {
                                 <?php endif; ?>
                                 <td>
                                     <a href="index.php?page=admin_edit_ranking&id_ranking=<?php echo $ranking->id; ?>">Modifica</a>
+                                </td>
+                                <td>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="id_ranking" value="<?php echo $ranking->id; ?>">
+                                        <button class="btn btn-secondary" type="submit" name="delete" onclick="return confirm('Sei sicuro di voler eliminare questo Ranking?');">Elimina</button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

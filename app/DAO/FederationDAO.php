@@ -84,7 +84,7 @@ class FederationDAO extends DB {
             $stmt->execute([$id]);
             return $stmt->rowCount();
         } catch (PDOException $e) {
-            error_log("PDOException in deleteCategory: " . $e->getMessage());
+            error_log("PDOException in deleteFederation: " . $e->getMessage());
             return false;
         }
     }
