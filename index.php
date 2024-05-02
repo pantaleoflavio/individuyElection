@@ -9,14 +9,18 @@ session_start();
 
 require __DIR__ . '/vendor/autoload.php';
 
-//INIT OF CONTROLLERS
+//INCLUDE OF CONTROLLERS
 use App\Controllers\UserController;
 use App\Controllers\RankingController;
 use App\Controllers\WrestlerController;
 use App\Controllers\CategoryController;
 use App\Controllers\VoteController;
 use App\Controllers\FederationController;
+//Search Engine
+use App\Core\SearchEngine;
+$searchEngine = new SearchEngine();
 
+//INIT OF CONTROLLERS
 $userController = new UserController();
 $rankingController = new RankingController();
 $wrestlerController = new WrestlerController();
@@ -44,12 +48,15 @@ if (strpos($page, 'admin') === 0) {
     include_once "includes/header.php";
 }
 
-
 // Contenuto principale
 
 switch ($page) {
     case 'home':
         include "resources/Views/" . $page . ".php";
+        break;
+    //CASI DI SEARCH ENL SITO
+    case 'search':
+        include "resources/Views/search.php";
         break;
     //CASI DI VOTO
     case 'lists':

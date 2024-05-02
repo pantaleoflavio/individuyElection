@@ -74,9 +74,10 @@ if (isset($_SESSION['userId'])) {
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success btn-dark" type="submit">Search</button>
+            <form action="index.php?page=search" method="get">
+                <input type="hidden" name="page" value="search">
+                <input type="text" name="query" placeholder="Cerca nel sito..." required>
+                <button type="submit">Cerca</button>
             </form>
             </div>
         </div>

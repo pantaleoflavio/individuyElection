@@ -2,7 +2,6 @@
 <main class="container">
     <div class="container py-5">
         <h1 class="text-center mb-5">Bentornato nella Piattaforma di Votazione di individuy Italiani!</h1>
-    
         <div class="row">
             <!-- Sezione Votazione -->
             <div class="col-md-6 mb-4">
