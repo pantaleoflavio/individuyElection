@@ -13,6 +13,7 @@ require __DIR__ . '/vendor/autoload.php';
 use App\Controllers\UserController;
 use App\Controllers\RankingController;
 use App\Controllers\WrestlerController;
+use App\Controllers\TagTeamController;
 use App\Controllers\CategoryController;
 use App\Controllers\VoteController;
 use App\Controllers\FederationController;
@@ -24,6 +25,7 @@ $searchEngine = new SearchEngine();
 $userController = new UserController();
 $rankingController = new RankingController();
 $wrestlerController = new WrestlerController();
+$tagTeamController = new TagTeamController();
 $categoryController = new CategoryController();
 $voteController = new VoteController();
 $federationController = new FederationController();
@@ -71,6 +73,8 @@ switch ($page) {
         break;
     //CASI DI VOTO TAG TEAM
     case 'votazione_dettaglio_tag_team':
+    case 'lista_tag_team':
+    case 'vota_tag_team':
         include "resources/Views/votazioni/tag_team/" . $page . ".php";  
         break;
     //CASI DI VOTO FEDERATION
