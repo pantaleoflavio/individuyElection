@@ -1,18 +1,18 @@
-<!-- resources/Views/votazioni/single_wrestler/vota_wrestler.php -->
+<!-- resources/Views/votazioni/single_wrestler/vota_tag_team.php -->
 
 <?php
 // Placeholder per la logica del controller
-if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
+if (!$_GET['id_tag_team'] || !$_SESSION['userId']) {
     echo "<script>alert('Effettua il login prima di votare')</script>";
     echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
 } else {
 
-    $wrestlerId = $_GET['id_wrestler'] ?? null;
+    $tagTeamId = $_GET['id_tag_team'] ?? null;
     $rankingId = $_GET['id_ranking'];
-    $wrestlerDetails = $wrestlerController->getSingleWrestlerPerId($wrestlerId);
-    $alreadyVoted = $voteController->hasUserAlreadyVoted($_SESSION['userId'], $rankingId, $wrestlerId, $tagTeamId=null, $federationId=null);
+    $tagTeamDetails = $tagTeamController->getTagTeamPerId($tagTeamId);
+    $alreadyVoted = $voteController->hasUserAlreadyVoted($_SESSION['userId'], $rankingId, $wrestlerId=null, $tagTeamId, $federationId=null);
     
-    if (!$wrestlerDetails) {
+    if (!$tagTeamDetails) {
         echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=404'</script>";
     }
 
@@ -30,22 +30,22 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
 
 <main class="container">
     <div class="container py-5">
-        <h2 class="text-center mb-4">Vota per: <?= htmlspecialchars($wrestlerDetails->name); ?></h2>
+        <h2 class="text-center mb-4">Vota per: <?= htmlspecialchars($tagTeamDetails->name); ?></h2>
     
         <!-- Dettagli del Wrestler -->
         <div class="wrestler-details mb-4">
             <!-- Aggiungi qui i dettagli del wrestler -->
-            <p><strong>Nome:</strong> <?= htmlspecialchars($wrestlerDetails->name); ?></p>
-            <p><strong>nazione:</strong> <?= htmlspecialchars($wrestlerDetails->country); ?></p>
-            <?php if($wrestlerDetails->categoryId != '') : ?>
+            <p><strong>Nome:</strong> <?= htmlspecialchars($tagTeamDetails->name); ?></p>
+            <p><strong>nazione:</strong> <?= htmlspecialchars($tagTeamDetails->country); ?></p>
+            <?php if($tagTeamDetails->categoryId != '') : ?>
                 <?php 
-                    $categoryName = $categoryController->getSingleCategory($wrestlerDetails->categoryId)->categoryName;
+                    $categoryName = $categoryController->getSingleCategory($tagTeamDetails->categoryId)->categoryName;
                 ?>
                 <p><strong>stile:</strong> <?= htmlspecialchars($categoryName); ?></p>
             <?php endif; ?>
-            <?php if($wrestlerDetails->federationId != '') : ?>
+            <?php if($tagTeamDetails->federationId != '') : ?>
                 <?php 
-                    $federation = $federationController->getFederationPerId($wrestlerDetails->federationId); 
+                    $federation = $federationController->getFederationPerId($tagTeamDetails->federationId); 
                 ?>
                 <p><strong>Federazione:</strong> <?= htmlspecialchars($federation->name);?> </p>
             <?php else : ?>
@@ -56,7 +56,7 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
     
         <!-- Form di Votazione -->
         <form action="<?php echo ROOT; ?>/resources/Views/votazioni/submit_vote.php" method="post">
-            <input type="hidden" name="wrestler_id" value="<?php echo $wrestlerId; ?>">
+            <input type="hidden" name="id_tag_team" value="<?php echo $tagTeamId; ?>">
             <input type="hidden" name="id_ranking" value="<?php echo $rankingId; ?>">
             <input type="hidden" name="id_user" value="<?php echo $_SESSION['userId']; ?>">
             <input type="hidden" name="year" value="<?= date('Y'); ?>">

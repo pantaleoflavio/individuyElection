@@ -13,6 +13,7 @@ require __DIR__ . '/vendor/autoload.php';
 use App\Controllers\UserController;
 use App\Controllers\RankingController;
 use App\Controllers\WrestlerController;
+use App\Controllers\TagTeamController;
 use App\Controllers\CategoryController;
 use App\Controllers\VoteController;
 use App\Controllers\FederationController;
@@ -24,6 +25,7 @@ $searchEngine = new SearchEngine();
 $userController = new UserController();
 $rankingController = new RankingController();
 $wrestlerController = new WrestlerController();
+$tagTeamController = new TagTeamController();
 $categoryController = new CategoryController();
 $voteController = new VoteController();
 $federationController = new FederationController();
@@ -66,21 +68,22 @@ switch ($page) {
     case 'votazione_dettaglio_wrestler':
     case 'lista_candidati':
     case 'vota_wrestler':
-    case 'lista_per_federazioni':
         include "resources/Views/votazioni/single_wrestler/" . $page . ".php";  
         break;
     //CASI DI VOTO TAG TEAM
     case 'votazione_dettaglio_tag_team':
+    case 'lista_tag_team':
+    case 'vota_tag_team':
         include "resources/Views/votazioni/tag_team/" . $page . ".php";  
         break;
     //CASI DI VOTO FEDERATION
     case 'federation_list':
+    case 'lista_per_federazioni':
     case 'votazione_dettaglio_federation':
         include "resources/Views/votazioni/federation/" . $page . ".php";
         break;
     //CASI DI VOTO SHOW
     //CASI DI cLASSIFICHE
-    case 'category_list':
     case 'indice_classifiche':
     case 'classifica':
         include "resources/Views/classifiche/" . $page . ".php";
@@ -102,6 +105,8 @@ switch ($page) {
     case 'admin_detail_user':
     case 'admin_wrestler':
     case 'admin_edit_wrestler':
+    case 'admin_tag_team':
+    case 'admin_edit_tag_team':
     case 'admin_category':
     case 'admin_edit_category':
     case 'admin_federation':

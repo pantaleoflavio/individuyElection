@@ -33,11 +33,22 @@ class VoteDAO extends DB {
         }
     }
 
-    public function hasUserAlreadyVoted($userId, $rankingId, $wrestlerId) {
-        $stmt = $this->connect()->prepare("SELECT COUNT(*) FROM votes WHERE id_user = ? AND id_ranking = ? AND id_wrestler = ?");
-        $stmt->execute([$userId, $rankingId, $wrestlerId]);
+    public function hasUserAlreadyVoted($userId, $rankingId, $wrestlerId, $tagTeamId, $federationId) {
+        $stmt = null;
+        if (!is_null($wrestlerId)) {
+            $stmt = $this->connect()->prepare("SELECT COUNT(*) FROM votes WHERE id_user = ? AND id_ranking = ? AND id_wrestler = ?");
+            $stmt->execute([$userId, $rankingId, $wrestlerId]);
+        } elseif (!is_null($tagTeamId)) {
+            $stmt = $this->connect()->prepare("SELECT COUNT(*) FROM votes WHERE id_user = ? AND id_ranking = ? AND id_tag_team = ?");
+            $stmt->execute([$userId, $rankingId, $tagTeamId]);
+        } elseif (!is_null($federationId)) {
+            $stmt = $this->connect()->prepare("SELECT COUNT(*) FROM votes WHERE id_user = ? AND id_ranking = ? AND id_federation = ?");
+            $stmt->execute([$userId, $rankingId, $federationId]);
+        }
+    
         return $stmt->fetchColumn() > 0;
     }
+    
     
     public function getVoteHistoryByUserId($userId) {
         try {

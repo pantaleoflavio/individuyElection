@@ -6,6 +6,7 @@ if (isset($_GET['id_ranking'])) {
     $rankingData = $rankingController->getRankingPerId($idRanking);
     $rankingScores = $rankingController->getRankingDetails($idRanking);
     $rankingIsActive = $rankingData->status;
+
 }
 ?>
 <main class="container">
@@ -16,13 +17,21 @@ if (isset($_GET['id_ranking'])) {
             <?php foreach ($rankingScores as $entry): ?>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <?php if ($rankingIsActive === 1): ?>
-                        <a href="index.php?page=vota_wrestler&id_wrestler=<?php echo $entry->id_wrestler; ?>&id_ranking=<?php echo $idRanking; ?>">
-                            <?= htmlspecialchars($entry->name); ?>
-                        </a>
+                        <?php if ($rankingData->rankingType === 'tag team'): ?>
+                            <a href="index.php?page=vota_tag_team&id_tag_team=<?= $entry->id; ?>&id_ranking=<?= $idRanking; ?>">
+                                <?= htmlspecialchars($entry->name); ?>
+                            </a>
+                        <?php elseif ($rankingData->rankingType === 'federation'): ?>
+                            <a href="index.php?page=vota_federation&id_federation=<?= $entry->id; ?>&id_ranking=<?= $idRanking; ?>">
+                                <?= htmlspecialchars($entry->name); ?>
+                            </a>
+                        <?php elseif ($rankingData->rankingType === 'wrestler'): ?>
+                            <a href="index.php?page=vota_wrestler&id_wrestler=<?= $entry->id; ?>&id_ranking=<?= $idRanking; ?>">
+                                <?= htmlspecialchars($entry->name); ?>
+                            </a>
+                        <?php endif; ?>
                     <?php else : ?>
-                        <p>
-                            <?= htmlspecialchars($entry->name); ?>
-                        </p>
+                        <p><?= htmlspecialchars($entry->name); ?></p>
                     <?php endif; ?>
                     <span class="badge bg-primary rounded-pill"><?= number_format($entry->averageScore, 1); ?></span>
                 </li>

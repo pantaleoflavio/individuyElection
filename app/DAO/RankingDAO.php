@@ -84,12 +84,33 @@ class RankingDAO extends DB {
 
     public function getRankingDetailsWithScores($idRanking) {
         try {
-            $sql = "SELECT w.id_wrestler, w.name, AVG(v.score) as averageScore
-                    FROM votes v
-                    JOIN wrestlers w ON v.id_wrestler = w.id_wrestler
-                    WHERE v.id_ranking = ?
-                    GROUP BY w.id_wrestler, w.name
-                    ORDER BY averageScore DESC";
+            $sql = "SELECT 
+                        CASE 
+                            WHEN v.id_wrestler IS NOT NULL THEN w.id_wrestler
+                            WHEN v.id_tag_team IS NOT NULL THEN tt.id_tag_team
+                            WHEN v.id_federation IS NOT NULL THEN f.id_federation
+                        END AS id,
+                        CASE 
+                            WHEN v.id_wrestler IS NOT NULL THEN w.name
+                            WHEN v.id_tag_team IS NOT NULL THEN tt.name
+                            WHEN v.id_federation IS NOT NULL THEN f.name
+                        END AS name,
+                        AVG(v.score) as averageScore
+                    FROM 
+                        votes v
+                    LEFT JOIN 
+                        wrestlers w ON v.id_wrestler = w.id_wrestler AND v.id_wrestler IS NOT NULL
+                    LEFT JOIN 
+                        tag_teams tt ON v.id_tag_team = tt.id_tag_team AND v.id_tag_team IS NOT NULL
+                    LEFT JOIN 
+                        federations f ON v.id_federation = f.id_federation AND v.id_federation IS NOT NULL
+                    WHERE 
+                        v.id_ranking = ?
+                    GROUP BY 
+                        id, name
+                    ORDER BY 
+                        averageScore DESC";
+            
             $stmt = $this->connect()->prepare($sql);
             $stmt->execute([$idRanking]);
             return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -98,6 +119,7 @@ class RankingDAO extends DB {
             return [];
         }
     }
+    
     
     public function getRankingsWithTotalScores() {
         try {

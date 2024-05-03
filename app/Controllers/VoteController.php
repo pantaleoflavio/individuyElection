@@ -43,8 +43,8 @@ class VoteController {
     }
 
     // Controller method for to check if user has already voted
-    public function hasUserAlreadyVoted($userId, $rankingId, $wrestlerId) {
-        return $this->voteDAO->hasUserAlreadyVoted($userId, $rankingId, $wrestlerId);
+    public function hasUserAlreadyVoted($userId, $rankingId, $wrestlerId, $tagTeamId, $federationId) {
+        return $this->voteDAO->hasUserAlreadyVoted($userId, $rankingId, $wrestlerId, $tagTeamId, $federationId);
     }
 
     public function getVoteHistoryByUserId($userId) {

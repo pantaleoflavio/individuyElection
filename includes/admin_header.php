@@ -59,18 +59,23 @@ if (!isset($_SESSION['userId']) && $_SESSION['role'] !== 'admin') {
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="index.php?page=admin_tag_team">
+                                <i class="fa-solid fa-dice-two"></i> Lista Tag Team
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="index.php?page=admin_category">
                                 <i class="fa-solid fa-tv"></i> Lista Stili
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?page=admin_federation">
-                                <i class="fa-solid fa-ticket"></i> Lista Federation
+                                <i class="fa-solid fa-sitemap"></i> Lista Federation
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?page=admin_ranking">
-                                <i class="fa-solid fa-ticket"></i> Lista Ranking
+                            <i class="fa-solid fa-trophy"></i> Lista Ranking
                             </a>
                         </li>
                     </ul>
