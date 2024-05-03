@@ -11,7 +11,7 @@ class WrestlerDAO extends DB {
 
     public function getSingleWrestlerPerId($id) {
         try {
-            // Aggiunta di w.is_active alla SELECT query
+            
             $stmt = $this->connect()->prepare("SELECT w.id_wrestler, w.name, w.country, w.category_id, w.federation_id, f.name AS federation, w.is_active
                                               FROM wrestlers w
                                               LEFT JOIN federations f ON w.federation_id = f.id_federation
@@ -25,7 +25,7 @@ class WrestlerDAO extends DB {
                     $wrestlerDB['country'], 
                     $wrestlerDB['category_id'],
                     $wrestlerDB['federation_id'],
-                    $wrestlerDB['is_active'] // Assicurati che questo campo sia correttamente inserito nell'oggetto Wrestler
+                    $wrestlerDB['is_active']
                 );
             }
             return null;

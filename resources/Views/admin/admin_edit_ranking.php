@@ -22,7 +22,7 @@ if (isset($_POST['save_ranking'])) {
     $result = $rankingController->updateRanking($rankingId, $rankingName, $description, $rankingType, $status, $categoryId, $includeInactive);
 
     if ($result) {
-        echo "<script>alert('Ranking aggiornato con successo.'); window.location.href='admin_ranking.php';</script>";
+        echo "<script>alert('Ranking aggiornato con successo.');</script>";
         echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=admin_ranking'</script>";
     } else {
         echo "<script>alert('Errore durante l'aggiornamento del ranking.');</script>";
