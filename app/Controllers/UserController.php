@@ -28,4 +28,20 @@ class UserController {
     public function setUserRole($id, $role) {
         return $this->userDAO->setUserRole($id, $role);
     }
+
+    public function getUserByEmail($email) {
+        return $this->userDAO->getUserByEmail($email);
+    }    
+
+    public function saveResetToken($email, $token, $expiry) {
+        return $this->userDAO->saveResetToken($email, $token, $expiry);
+    }
+
+    public function verifyResetToken($email, $token) {
+        return $this->userDAO->verifyResetToken($email, $token);
+    }
+
+    public function updatePassword($email, $hashedPassword) {
+        return $this->userDAO->updatePassword($email, $hashedPassword);
+    }
 }
