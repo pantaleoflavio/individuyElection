@@ -46,5 +46,8 @@ if (isset($_SESSION['userId'])){
             </div>
             <button type="submit" name="login" class="btn btn-primary">Accedi</button>
         </form>
+        <div class="mt-3">
+            <a href="index.php?page=password_recovery">Hai dimenticato la password?</a>
+        </div>
     </div>
 </main>

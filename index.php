@@ -7,6 +7,9 @@ define('ROOT', "http://" . $_SERVER['SERVER_NAME'] . "/individuyElection");
 // Avvia la sessione, gestisci le dipendenze, ecc.
 session_start();
 
+// Imposta il fuso orario
+date_default_timezone_set('Europe/Rome');
+
 require __DIR__ . '/vendor/autoload.php';
 
 //INCLUDE OF CONTROLLERS
@@ -17,11 +20,13 @@ use App\Controllers\TagTeamController;
 use App\Controllers\CategoryController;
 use App\Controllers\VoteController;
 use App\Controllers\FederationController;
+use App\Core\SendMailer;
 //Search Engine
 use App\Core\SearchEngine;
 $searchEngine = new SearchEngine();
 
 //INIT OF CONTROLLERS
+$sendMailer = new SendMailer();
 $userController = new UserController();
 $rankingController = new RankingController();
 $wrestlerController = new WrestlerController();
@@ -97,6 +102,9 @@ switch ($page) {
     case 'login':
     case 'signup':
     case 'logout':
+    case 'password_recovery':
+    case 'handle_password_recovery':
+    case 'reset_password':
         include "resources/Views/auth/" . $page . ".php";
         break;
     //CASI DI Admin
