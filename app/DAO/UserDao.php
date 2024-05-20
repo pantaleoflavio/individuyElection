@@ -108,4 +108,37 @@ class UserDAO extends DB {
         }
     }
     
+    public function verifyUserPassword($id, $providedPassword) {
+        try {
+            $sql = "SELECT password FROM users WHERE id_user = :id";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+            $stmt->execute();
+    
+            $hashedPassword = $stmt->fetchColumn();
+    
+            if ($hashedPassword !== false) {
+                return password_verify($providedPassword, $hashedPassword);
+            }
+            return false;
+        } catch (PDOException $e) {
+            error_log("PDOException in verifyUserPassword: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function deleteUser($userId) {
+        try {
+            $sql = "DELETE FROM users WHERE id_user = :userId";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            error_log("PDOException in deleteUser: " . $e->getMessage());
+            return false;
+        }
+    }
+    
 }
