@@ -61,7 +61,7 @@ switch ($page) {
     case 'home':
         include "resources/Views/" . $page . ".php";
         break;
-    //CASI DI SEARCH ENL SITO
+    //CASI DI SEARCH NEL SITO
     case 'search':
         include "resources/Views/search.php";
         break;
@@ -96,6 +96,7 @@ switch ($page) {
     //CASI DI USER
     case 'user':
     case 'user-setting':
+    case 'delete-profile':
         include "resources/Views/user/" . $page . ".php";
         break;
     //CASI DI AUTH

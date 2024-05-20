@@ -61,10 +61,12 @@ if (!isset($_SESSION['userId'])) {
                         </div>
                         <div class="py-3 text-right">
                             <button type="submit" name="userUpdate" class="btn btn-primary">UPDATE</button>
-                        <div class="clearfix">
                         </div>
                     </fieldset>
                 </form>
+                <div class="py-3 text-right">
+                    <a href="index.php?page=delete-profile" class="btn btn-danger">elimina il profilo</a>
+                </div>
                 <!-- Account Detail of the Page end -->
             </div>
         </div>

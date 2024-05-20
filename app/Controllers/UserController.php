@@ -44,4 +44,12 @@ class UserController {
     public function updatePassword($email, $hashedPassword) {
         return $this->userDAO->updatePassword($email, $hashedPassword);
     }
+
+    public function  verifyUserPassword($id, $providedPassword) {
+        return $this->userDAO-> verifyUserPassword($id, $providedPassword);
+    }
+
+    public function  deleteUser($userId) {
+        return $this->userDAO-> deleteUser($userId);
+    }
 }
