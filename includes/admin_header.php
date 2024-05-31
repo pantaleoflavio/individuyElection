@@ -1,7 +1,8 @@
 <?php
-if (!isset($_SESSION['userId']) && $_SESSION['role'] !== 'admin') {
+if ($_SESSION['role'] !== 'admin') {
     echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
 }
+
 ?>
 
 <!DOCTYPE html>
