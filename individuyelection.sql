@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 20, 2024 alle 13:17
+-- Creato il: Mag 31, 2024 alle 11:12
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.18
 
@@ -39,7 +39,8 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`category_id`, `name`) VALUES
 (2, 'Flyer'),
 (3, 'Hardcore'),
-(4, 'Comediu');
+(4, 'Comedan'),
+(6, 'Astrofisici Nucleari');
 
 -- --------------------------------------------------------
 
@@ -60,7 +61,8 @@ CREATE TABLE `federations` (
 INSERT INTO `federations` (`id_federation`, `name`, `description`) VALUES
 (2, 'AEW', 'All Elite Wrestling'),
 (3, 'AJPW', 'All Japan Pro Wrestling'),
-(4, 'WWE', 'World Wrestling Entertainment');
+(4, 'WWE', 'World Wrestling Entertainment'),
+(6, 'ASCA', 'Associazione Astrofisici Nucleari');
 
 -- --------------------------------------------------------
 
@@ -83,9 +85,10 @@ CREATE TABLE `list_ranking` (
 --
 
 INSERT INTO `list_ranking` (`id_ranking`, `ranking_name`, `description`, `ranking`, `status`, `category_id`, `include_inactive`) VALUES
-(1, 'Wrestler of the Year 2024', 'Vote for your favorite wrestler of the year 2024.', 'wrestler', 1, NULL, 0),
+(1, 'Wrestler of the Year 2024', 'Vote for your favorite wrestler of the year 2024.', 'wrestler', 0, NULL, 0),
 (2, 'Tag Team of the Year 2024', 'Vote your favorite tag team of the year 2024.', 'tag team', 0, NULL, 0),
-(15, 'Wrestler all time', 'all', 'wrestler', 1, NULL, 1);
+(15, 'Wrestler all time', 'all', 'wrestler', 1, NULL, 1),
+(16, 'Best Astrofisici Nucleari 2024', 'Chi e\' in lizza per il nobel 2024', 'wrestler', 1, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -137,7 +140,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `fullname`, `email`, `username`, `image_path`, `password`, `created_at`, `role`, `reset_token`, `token_expiry`) VALUES
 (1, 'John Doe', 'john@doe.com', 'johndoe', 'john.jpg', '$2y$10$mfhvQ3nh.TdyVX5yLwGDIedEbbt5Jr0JA/ZZH.EPMebbaZixWrjmy', '2024-04-10 11:05:09', 'admin', NULL, NULL),
 (2, 'Mary Jane', 'mary@jane.com', 'maryjane99', 'john.jpg', '$2y$10$JYIFMefwR2El8SxdIKW5oOEO2F33LUld8Ct8VHAJbwqbdK1voWVim', '2024-04-10 12:16:55', 'user', NULL, NULL),
-(5, 'peter parker', 'peter@parker.com', 'spiderman', 'spiderman.jpg', '$2y$10$GGrWFkRj/VvmGO2FrbgSi.Sr/kjq9idqAJNCqQu.8zm2aWBvHdyOe', '2024-05-20 11:55:48', 'user', NULL, NULL);
+(5, 'peter parker', 'flavio.pantaleo@yahoo.com', 'spiderman', 'spiderman.jpg', '$2y$10$YU5lgrmi7oXIGHsNNsEdd.B0wCTmmqMw4KwlAHCRUHv2XdHdyHE26', '2024-05-20 11:55:48', 'user', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -165,13 +168,13 @@ INSERT INTO `votes` (`id_votes`, `id_ranking`, `id_wrestler`, `id_tag_team`, `id
 (4, 3, 4, NULL, NULL, 1, 1.5, 2024, '2024-04-13 17:27:31'),
 (19, 1, 2, NULL, NULL, 2, 3.5, 2024, '2024-04-14 16:32:41'),
 (20, 3, 2, NULL, NULL, 2, 0.5, 2024, '2024-04-14 16:33:15'),
-(21, 1, 3, NULL, NULL, 2, 3.0, 2024, '2024-04-14 16:40:50'),
-(22, 1, 3, NULL, NULL, 1, 10.0, 2024, '2024-04-14 16:41:28'),
 (24, 1, 2, NULL, NULL, 1, 1.0, 2024, '2024-04-19 17:53:01'),
 (28, 2, NULL, 1, NULL, 1, 2.5, 2024, '2024-05-03 10:51:19'),
 (30, 2, NULL, 2, NULL, 1, 4.5, 2024, '2024-05-03 13:41:18'),
 (31, 15, 7, NULL, NULL, 1, 2.5, 2024, '2024-05-20 11:46:37'),
-(32, 1, 5, NULL, NULL, 1, 8.5, 2024, '2024-05-20 11:47:03');
+(32, 1, 5, NULL, NULL, 1, 8.5, 2024, '2024-05-20 11:47:03'),
+(33, 15, 4, NULL, NULL, 1, 6.0, 2024, '2024-05-27 08:17:06'),
+(34, 15, 4, NULL, NULL, 2, 6.5, 2024, '2024-05-27 08:18:29');
 
 -- --------------------------------------------------------
 
@@ -194,10 +197,10 @@ CREATE TABLE `wrestlers` (
 
 INSERT INTO `wrestlers` (`id_wrestler`, `name`, `country`, `category_id`, `federation_id`, `is_active`) VALUES
 (2, 'Jane', 'UK', 2, 2, 1),
-(3, 'Jimmy', 'USA', NULL, 4, 1),
-(4, 'Lucy', 'Australia', 2, NULL, 1),
-(5, 'Nero', 'Holland', NULL, NULL, 1),
-(7, 'tren', 'china', NULL, 3, 0);
+(4, 'Lucy', 'Australia', 6, 4, 1),
+(5, 'Nero', 'Holland', 6, 6, 1),
+(7, 'tren', 'china', NULL, 3, 0),
+(8, 'Sandro', 'Francia', NULL, 2, 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -264,19 +267,19 @@ ALTER TABLE `wrestlers`
 -- AUTO_INCREMENT per la tabella `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `federations`
 --
 ALTER TABLE `federations`
-  MODIFY `id_federation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_federation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `list_ranking`
 --
 ALTER TABLE `list_ranking`
-  MODIFY `id_ranking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_ranking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT per la tabella `tag_teams`
@@ -288,19 +291,19 @@ ALTER TABLE `tag_teams`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `id_votes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_votes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT per la tabella `wrestlers`
 --
 ALTER TABLE `wrestlers`
-  MODIFY `id_wrestler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_wrestler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Limiti per le tabelle scaricate
