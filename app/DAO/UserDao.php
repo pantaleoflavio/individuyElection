@@ -56,5 +56,89 @@ class UserDAO extends DB {
             return false;
         }
     }
+
+    public function getUserByEmail($email) {
+        try {
+            $stmt = $this->connect()->prepare("SELECT * FROM users WHERE email = ?");
+            $stmt->execute([$email]);
+            $userDB = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($userDB) {
+                return new User($userDB['id_user'], $userDB['fullname'], $userDB['email'], $userDB['username'], $userDB['image_path'], $userDB['role']);
+            }
+            return null;
+        } catch (PDOException $e) {
+            error_log("PDOException in getUserByEmail: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function saveResetToken($email, $token, $expiry) {
+        try {
+            $sql = "UPDATE users SET reset_token = ?, token_expiry = ? WHERE email = ?";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$token, $expiry, $email]);
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            error_log("PDOException in saveResetToken: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function verifyResetToken($email, $token) {
+        try {
+            $sql = "SELECT id_user FROM users WHERE email = ? AND reset_token = ? AND token_expiry > NOW()";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$email, $token]);
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            error_log("PDOException in verifyResetToken: " . $e->getMessage());
+            return false;
+        }
+    }    
+
+    public function updatePassword($email, $hashedPassword) {
+        try {
+            $sql = "UPDATE users SET password = ?, reset_token = NULL, token_expiry = NULL WHERE email = ?";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->execute([$hashedPassword, $email]);
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            error_log("PDOException in updatePassword: " . $e->getMessage());
+            return false;
+        }
+    }
+    
+    public function verifyUserPassword($id, $providedPassword) {
+        try {
+            $sql = "SELECT password FROM users WHERE id_user = :id";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+            $stmt->execute();
+    
+            $hashedPassword = $stmt->fetchColumn();
+    
+            if ($hashedPassword !== false) {
+                return password_verify($providedPassword, $hashedPassword);
+            }
+            return false;
+        } catch (PDOException $e) {
+            error_log("PDOException in verifyUserPassword: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function deleteUser($userId) {
+        try {
+            $sql = "DELETE FROM users WHERE id_user = :userId";
+            $stmt = $this->connect()->prepare($sql);
+            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            error_log("PDOException in deleteUser: " . $e->getMessage());
+            return false;
+        }
+    }
     
 }

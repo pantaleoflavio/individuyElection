@@ -26,12 +26,16 @@ $results = !empty($query) ? $searchEngine->searchSite($query) : [];
                                 case 'rankings':
                                     $href = "index.php?page=classifica&id_ranking=$id";
                                     break;
-                                case 'categories':
-                                    $href = "index.php?page=lista_candidati&id_cat=$id";
-                                    break;
                                 case 'federations':
                                     $href = "index.php?page=lista_per_federazioni&id_federation=$id";
                                     break;
+                                case 'wrestlers':
+                                    $href = "index.php?page=lista_candidati";
+                                    break;
+                                case 'tag teams':
+                                    $href = "index.php?page=lista_tag_team";
+                                    break;
+
                             }
                             echo "<a href='$href'>$name</a>$description";
                             ?>

@@ -26,7 +26,7 @@
             } catch (PDOException $e) {
                 // Gestione dell'errore con log o redirect, a seconda delle esigenze
                 error_log("Errore durante l'inserimento dell'utente: " . $e->getMessage());
-                echo "<script>alert('Username or email are wrong'); window.location.href='../resources/Views/index.php?error=stmtfailed';</script>";
+                echo "<script>alert('Username or email are wrong'); window.location.href='index.php?error=stmtfailed';</script>";
                 exit();
             } finally {
                 // Assicurazione che lo statement sia chiuso correttamente
@@ -40,7 +40,7 @@
         
             if(!$stmt->execute(array($email))){
                 $stmt = null;
-                echo "<script>alert('Username or email are wrong'); window.location.href='../resources/Views/index.php?error=stmtfailed';</script>";
+                echo "<script>alert('Username or email are wrong'); window.location.href='index.php?error=stmtfailed';</script>";
                 exit();
             }
 

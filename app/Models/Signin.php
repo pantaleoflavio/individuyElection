@@ -49,7 +49,7 @@ class Signin extends DB {
     }
 
     private function redirectWithError($message, $errorType) {
-        echo "<script>alert('{$message}'); window.location.href='../auth/signin.php?error={$errorType}';</script>";
+        echo "<script>alert('{$message}'); window.location.href='index.php?page=login&error={$errorType}';</script>";
         exit();
     }
 }

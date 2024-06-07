@@ -25,15 +25,20 @@ class SearchEngine extends DB {
             $stmt->execute([$searchTerm, $searchTerm]);
             $results['federations'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Searching in the Categories table
-            $stmt = $conn->prepare("SELECT 'Category' as type, category_id as id, name FROM categories WHERE name LIKE ?");
-            $stmt->execute([$searchTerm]);
-            $results['categories'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
             // Searching in the Rankings table
             $stmt = $conn->prepare("SELECT 'Ranking' as type, id_ranking as id, ranking_name as name, description FROM list_ranking WHERE ranking_name LIKE ? OR description LIKE ?");
             $stmt->execute([$searchTerm, $searchTerm]);
             $results['rankings'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Searching in the Wrestlers table
+            $stmt = $conn->prepare("SELECT 'Wrestler' as type, id_wrestler as id, name, country FROM wrestlers WHERE name LIKE ? OR country LIKE ?");
+            $stmt->execute([$searchTerm, $searchTerm]);
+            $results['wrestlers'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Searching in the Tag Team table
+            $stmt = $conn->prepare("SELECT 'Tag Teams' as type, id_tag_team as id, name, country FROM tag_teams WHERE name LIKE ? OR country LIKE ?");
+            $stmt->execute([$searchTerm, $searchTerm]);
+            $results['tag teams'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $results;
         } catch (PDOException $e) {
