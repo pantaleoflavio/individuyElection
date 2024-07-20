@@ -4,7 +4,7 @@ if (isset($_SESSION['userId'])) {
     $singleUser = $userController->getSingleUser($userId);
     $voteHistory = $voteController->getVoteHistoryByUserId($userId);
 } else {
-    echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
+    echo "<script>window.location.href='" . ROOT . "/index.php?page=home'</script>";
 }
 ?>
 <div class="container">

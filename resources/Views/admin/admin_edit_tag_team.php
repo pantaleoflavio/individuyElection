@@ -22,7 +22,7 @@ if (isset($_POST['updateTagTeam'])) {
     $updateResult = $tagTeamController->updateTagTeam($id, $name, $country, $categoryId, $federationId, $is_active);
     if ($updateResult) {
         echo "<script>alert('Tag Team aggiornato con successo!')</script>";
-        echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=admin_tag_team'</script>";
+        echo "<script>window.location.href='/index.php?page=admin_tag_team'</script>";
     } else {
         echo "<script>alert('Errore nell'aggiornamento del Tag Team.')</script>";
     }

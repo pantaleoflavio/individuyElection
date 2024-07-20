@@ -10,7 +10,7 @@ if (isset($_GET['id_user'])) {
         echo "<script>alert('ruolo cambiato.')</script>";
     }
 } else {
-    echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
+    echo "<script>window.location.href='/index.php?page=home'</script>";
 }
 ?>
 <div class="col-md-9 ms-sm-auto col-lg-10 px-md-2">

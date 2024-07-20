@@ -30,7 +30,7 @@ if (isset($_POST['delete'])) {
 
     if ($result) {
         //echo 'ok';
-        echo "<script>alert('Tag team eliminato con successo.'); window.location.href='index.php?page=admin_tag_team';</script>";
+        echo "<script>alert('Tag team eliminato con successo.');window.location.href='/index.php?page=admin_tag_team';</script>";
     } else {
         echo "<script>alert('Errore nell'eliminazione del Tag team.')</script>";
     }

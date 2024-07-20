@@ -3,7 +3,7 @@
 <?php
 
 if (!isset($_SESSION['userId'])) {
-    echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
+    echo "<script>window.location.href='" . ROOT . "/index.php?page=home'</script>";
 } else {
     $userId = $_SESSION['userId'];
     $user = $userController->getSingleUser($userId);
@@ -25,7 +25,7 @@ if (!isset($_SESSION['userId'])) {
         
         $userUpdate = $userController->updateSingleUser($userId, $fullname, $email, $username, $user_pic);
 
-        echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?user-setting'</script>";
+        echo "<script>window.location.href='" . ROOT . "/index.php?user-setting'</script>";
     }
 
 }

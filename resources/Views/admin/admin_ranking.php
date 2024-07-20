@@ -32,7 +32,7 @@ if (isset($_POST['delete'])) {
 
     if ($result) {
         //echo 'ok';
-        echo "<script>alert('Ranking eliminato con successo.'); window.location.href='index.php?page=admin_ranking';</script>";
+        echo "<script>alert('Ranking eliminato con successo.'); window.location.href='/index.php?page=admin_ranking';</script>";
     } else {
         echo "<script>alert('Errore nell'eliminazione del Ranking.')</script>";
     }
