@@ -2,7 +2,12 @@
 // index.php nella directory radice
 
 // Definisci la costante per la root del sito
-define('ROOT', "http://" . $_SERVER['SERVER_NAME'] . "/individuyElection");
+if (getenv('BASE_URL')) {
+    //Se si usa docker
+    define('ROOT', getenv('BASE_URL'));
+} else {
+    define('ROOT', "http://" . $_SERVER['SERVER_NAME'] . "/individuyElection");
+}
 
 // Avvia la sessione, gestisci le dipendenze, ecc.
 session_start();
