@@ -5,7 +5,7 @@ if (isset($_GET['id_ranking'])) {
     $ranking = $rankingController->getRankingPerId($rankingId);
     $categories = $categoryController->getAllCategories();
     if (!$ranking) {
-        echo "<script>alert('Ranking non trovato.'); window.location.href='admin_ranking.php';</script>";
+        echo "<script>alert('Ranking non trovato.'); window.location.href='" . ROOT . "/index.php?page=admin_ranking';</script>";
     }
 }
 
@@ -23,7 +23,7 @@ if (isset($_POST['save_ranking'])) {
 
     if ($result) {
         echo "<script>alert('Ranking aggiornato con successo.');</script>";
-        echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=admin_ranking'</script>";
+        echo "<script>window.location.href='/index.php?page=admin_ranking'</script>";
     } else {
         echo "<script>alert('Errore durante l'aggiornamento del ranking.');</script>";
     }

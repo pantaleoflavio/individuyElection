@@ -21,7 +21,7 @@ if (isset($_POST['updateWrestler'])) {
     $updateResult = $wrestlerController->updateWrestler($id, $name, $country, $categoryId, $federationId, $is_active);
     if ($updateResult) {
         echo "<script>alert('Wrestler aggiornato con successo!')</script>";
-        echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=admin_wrestler'</script>";
+        echo "<script>window.location.href='/index.php?page=admin_wrestler'</script>";
     } else {
         echo "<script>alert('Errore nell'aggiornamento del wrestler.')</script>";
     }
