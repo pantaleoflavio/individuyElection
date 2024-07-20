@@ -26,7 +26,7 @@ if (isset($_POST['delete'])) {
     
     if ($result) {
         //echo 'ok';
-        echo "<script>alert('Federazione eliminata con successo.'); window.location.href='index.php?page=admin_federation';</script>";
+        echo "<script>alert('Federazione eliminata con successo.'); window.location.href='/index.php?page=admin_federation';</script>";
     } else {
         echo "<script>alert('Errore nell'eliminazione della Federazione.')</script>";
     }

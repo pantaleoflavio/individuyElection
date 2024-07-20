@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Mag 31, 2024 alle 11:12
--- Versione del server: 10.4.32-MariaDB
--- Versione PHP: 8.2.18
+-- Host: db
+-- Creato il: Lug 20, 2024 alle 12:00
+-- Versione del server: 10.4.32-MariaDB-1:10.4.32+maria~ubu2004
+-- Versione PHP: 8.2.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `individuyelection`
+-- Database: `individuyElection`
 --
 
 -- --------------------------------------------------------
@@ -112,7 +112,7 @@ CREATE TABLE `tag_teams` (
 INSERT INTO `tag_teams` (`id_tag_team`, `name`, `country`, `category_id`, `federation_id`, `is_active`) VALUES
 (1, 'The Dynamic Duo', 'USA', NULL, NULL, 1),
 (2, 'The Unstoppables', 'Australia', NULL, NULL, 1),
-(3, 'DX Generation', 'USA', NULL, 4, 0);
+(3, 'DX Generation', 'USA', NULL, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -166,9 +166,6 @@ CREATE TABLE `votes` (
 
 INSERT INTO `votes` (`id_votes`, `id_ranking`, `id_wrestler`, `id_tag_team`, `id_federation`, `id_user`, `score`, `year`, `created_at`) VALUES
 (4, 3, 4, NULL, NULL, 1, 1.5, 2024, '2024-04-13 17:27:31'),
-(19, 1, 2, NULL, NULL, 2, 3.5, 2024, '2024-04-14 16:32:41'),
-(20, 3, 2, NULL, NULL, 2, 0.5, 2024, '2024-04-14 16:33:15'),
-(24, 1, 2, NULL, NULL, 1, 1.0, 2024, '2024-04-19 17:53:01'),
 (28, 2, NULL, 1, NULL, 1, 2.5, 2024, '2024-05-03 10:51:19'),
 (30, 2, NULL, 2, NULL, 1, 4.5, 2024, '2024-05-03 13:41:18'),
 (31, 15, 7, NULL, NULL, 1, 2.5, 2024, '2024-05-20 11:46:37'),
@@ -196,11 +193,9 @@ CREATE TABLE `wrestlers` (
 --
 
 INSERT INTO `wrestlers` (`id_wrestler`, `name`, `country`, `category_id`, `federation_id`, `is_active`) VALUES
-(2, 'Jane', 'UK', 2, 2, 1),
 (4, 'Lucy', 'Australia', 6, 4, 1),
 (5, 'Nero', 'Holland', 6, 6, 1),
-(7, 'tren', 'china', NULL, 3, 0),
-(8, 'Sandro', 'Francia', NULL, 2, 1);
+(7, 'tren', 'china', NULL, 3, 0);
 
 --
 -- Indici per le tabelle scaricate
@@ -285,7 +280,7 @@ ALTER TABLE `list_ranking`
 -- AUTO_INCREMENT per la tabella `tag_teams`
 --
 ALTER TABLE `tag_teams`
-  MODIFY `id_tag_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_tag_team` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `users`
@@ -303,7 +298,7 @@ ALTER TABLE `votes`
 -- AUTO_INCREMENT per la tabella `wrestlers`
 --
 ALTER TABLE `wrestlers`
-  MODIFY `id_wrestler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_wrestler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Limiti per le tabelle scaricate
@@ -330,7 +325,7 @@ ALTER TABLE `votes`
   ADD CONSTRAINT `fk_votes_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
   ADD CONSTRAINT `fk_votes_wrestler` FOREIGN KEY (`id_wrestler`) REFERENCES `wrestlers` (`id_wrestler`) ON DELETE CASCADE,
   ADD CONSTRAINT `votes_ibfk_2` FOREIGN KEY (`id_wrestler`) REFERENCES `wrestlers` (`id_wrestler`),
-  ADD CONSTRAINT `votes_ibfk_3` FOREIGN KEY (`id_tag_team`) REFERENCES `tag_teams` (`id_tag_team`),
+  ADD CONSTRAINT `votes_ibfk_3` FOREIGN KEY (`id_tag_team`) REFERENCES `tag_teams` (`id_tag_team`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `votes_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --

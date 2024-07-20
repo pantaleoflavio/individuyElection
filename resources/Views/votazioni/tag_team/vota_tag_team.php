@@ -4,7 +4,7 @@
 // Placeholder per la logica del controller
 if (!$_GET['id_tag_team'] || !$_SESSION['userId']) {
     echo "<script>alert('Effettua il login prima di votare')</script>";
-    echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
+    echo "<script>window.location.href='" . ROOT . "/index.php?page=home'</script>";
 } else {
 
     $tagTeamId = $_GET['id_tag_team'] ?? null;
@@ -13,13 +13,13 @@ if (!$_GET['id_tag_team'] || !$_SESSION['userId']) {
     $alreadyVoted = $voteController->hasUserAlreadyVoted($_SESSION['userId'], $rankingId, $wrestlerId=null, $tagTeamId, $federationId=null);
     
     if (!$tagTeamDetails) {
-        echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=404'</script>";
+        echo "<script>window.location.href='" . ROOT . "/index.php?page=404'</script>";
     }
 
 
     if ($alreadyVoted) {
         echo "<script>alert('Hai già dato il tuo voto qua.')</script>";
-        echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=lists'</script>";
+        echo "<script>window.location.href='" . ROOT . "/index.php?page=lists'</script>";
         exit();
     }
 
