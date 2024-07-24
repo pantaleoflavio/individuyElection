@@ -4,7 +4,7 @@
 use App\Controllers\SignupController;
 
 if (isset($_SESSION['userId'])){
-    echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
+    echo "<script>window.location.href='" . ROOT . "/index.php?page=home'</script>";
 } else {
 
     include __DIR__ . "/../../../app/Controllers/SignupController.php";
@@ -26,7 +26,7 @@ if (isset($_SESSION['userId'])){
         try {
             $signup->signupUser();
             echo "<script>alert('Register successfully')</script>";
-            echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=login'</script>";
+            echo "<script>window.location.href='" . ROOT . "/index.php?page=login'</script>";
 
         } catch (Exception $e) {
             // Mostra un messaggio di errore più dettagliato

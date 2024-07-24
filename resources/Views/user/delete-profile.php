@@ -3,7 +3,7 @@
 <?php
 
 if (!isset($_SESSION['userId'])) {
-    echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
+    echo "<script>window.location.href='" . ROOT . "/index.php?page=home'</script>";
 } else {
     $userId = $_SESSION['userId'];
     
@@ -21,7 +21,7 @@ if (!isset($_SESSION['userId'])) {
             session_unset();
             session_destroy();
             echo "<script>alert('Profilo eliminato con successo')</script>";
-            echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home</script>";
+            echo "<script>window.location.href='" . ROOT . "/index.php?page=home</script>";
         } else {
             echo "<script>alert('QUalcosa non ha funzionato')</script>";
         }

@@ -12,7 +12,7 @@
  
     } else {
         // Redirect o messaggio di errore se non è specificato un ID di federazione
-        echo "<script>alert('Nessuna federazione specificata!'); window.location.href='index.php';</script>";
+        echo "<script>alert('Nessuna federazione specificata!'); window.location.href='href='" . ROOT . "/index.php?page=home';</script>";
     }
 ?>
 

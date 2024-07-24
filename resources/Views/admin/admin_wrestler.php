@@ -30,7 +30,7 @@ if (isset($_POST['delete'])) {
 
     if ($result) {
         //echo 'ok';
-        echo "<script>alert('Wrestler eliminato con successo.'); window.location.href='index.php?page=admin_wrestler';</script>";
+        echo "<script>alert('Wrestler eliminato con successo.'); window.location.href='/index.php?page=admin_wrestler';</script>";
     } else {
         echo "<script>alert('Errore nell'eliminazione del Wrestler.')</script>";
     }

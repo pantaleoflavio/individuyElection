@@ -41,6 +41,6 @@ if ($response == true) {
 }
 
 // Reindirizza l'utente alla pagina da cui è venuto o a una pagina di default
-echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
+echo "<script> window.location.href='/index.php?page=home'</script>";
 
 exit();

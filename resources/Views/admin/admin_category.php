@@ -26,7 +26,7 @@ if (isset($_POST['delete'])) {
 
     if ($result) {
         //echo 'ok';
-        echo "<script>alert('Categoria eliminata con successo.'); window.location.href='index.php?page=admin_category';</script>";
+        echo "<script>alert('Categoria eliminata con successo.'); window.location.href='/index.php?page=admin_category';</script>";
     } else {
         echo "<script>alert('Errore nell'eliminazione della categoria.')</script>";
     }

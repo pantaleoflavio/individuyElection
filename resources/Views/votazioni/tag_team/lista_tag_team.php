@@ -10,7 +10,7 @@
 
         
         if ($rankingIsActive === 0) {
-            echo "<script>alert('Votazioni chiuse!'); window.location.href='index.php';</script>";
+            echo "<script>alert('Votazioni chiuse!'); window.location.href='" . ROOT . "/index.php?page=home';</script>";
         }
     }
     

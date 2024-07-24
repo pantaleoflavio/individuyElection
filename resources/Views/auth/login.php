@@ -4,7 +4,7 @@
 use App\Controllers\SigninController;
 
 if (isset($_SESSION['userId'])){
-    echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
+    echo "<script>window.location.href='" . ROOT . "/index.php?page=home'</script>";
 } else {
     if (isset($_POST['login'])) {
 
@@ -20,7 +20,7 @@ if (isset($_SESSION['userId'])){
             $signin->loginUser();
             // Going to back to front page
             echo "<script>alert('You are logged')</script>";
-            echo "<script>window.location.href='http://" . $_SERVER['SERVER_NAME'] . "/individuyElection/index.php?page=home'</script>";
+            echo "<script>window.location.href='" . ROOT . "/index.php?page=home'</script>";
         
         } catch (Exception $e) {
             // Mostra un messaggio di errore più dettagliato
