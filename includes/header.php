@@ -22,7 +22,7 @@ if (isset($_SESSION['userId'])) {
     <link rel="stylesheet" href="<?php echo ROOT; ?>/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="<?php echo ROOT; ?>/node_modules/bootstrap/">
+    <link rel="stylesheet" href="<?php echo ROOT; ?>/node_modules/bootstrap/dist/css/dootstrap.min.css">
     
     <!-- Style -->
     <link rel="stylesheet" href="<?php echo ROOT; ?>/assets/public/css/styles.css">
