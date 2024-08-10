@@ -17,9 +17,9 @@ if (isset($_SESSION['userId'])) {
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo ROOT; ?>/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo ROOT; ?>/favicon/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-
+    
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo ROOT; ?>/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- Bootstrap -->
     <link rel="stylesheet" href="<?php echo ROOT; ?>/node_modules/bootstrap/dist/css/dootstrap.min.css">
