@@ -19,7 +19,7 @@ git clone https://github.com/pantaleoflavio/individuyElection /path/to/htdocs/
 
 ```Copy code
 DB_HOST=db
-DB_NAME=cinema
+DB_NAME=individuyelection
 DB_USER=root
 DB_PASS=
 SMTP_HOST=hostYouWillUseForEmailTesting
