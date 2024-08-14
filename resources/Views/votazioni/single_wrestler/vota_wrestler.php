@@ -2,9 +2,9 @@
 
 <?php
 // Placeholder per la logica del controller
-if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
+if (!$_GET['id_wrestler'] || !isset($_SESSION['userId'])) {
     echo "<script>alert('Effettua il login prima di votare')</script>";
-    echo "<script>window.location.href='href='" . ROOT . "/index.php?page=home'</script>";
+    echo "<script>window.location.href='" . ROOT . "/index.php?page=home'</script>";
 } else {
 
     $wrestlerId = $_GET['id_wrestler'] ?? null;
@@ -13,7 +13,7 @@ if (!$_GET['id_wrestler'] || !$_SESSION['userId']) {
     $alreadyVoted = $voteController->hasUserAlreadyVoted($_SESSION['userId'], $rankingId, $wrestlerId, $tagTeamId=null, $federationId=null);
     
     if (!$wrestlerDetails) {
-        echo "<script>window.location.href='href='" . ROOT . "/index.php?page=404'</script>";
+        echo "<script>window.location.href='" . ROOT . "/index.php?page=404'</script>";
     }
 
 
